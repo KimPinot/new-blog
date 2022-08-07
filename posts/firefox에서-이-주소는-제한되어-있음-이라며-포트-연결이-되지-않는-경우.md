@@ -1,6 +1,6 @@
 ---
 title: firefox에서 '이 주소는 제한되어 있음' 이라며 포트 연결이 되지 않는 경우
-date: 2021-01-21 11:10
+date: 2021-01-21 11:10:00
 tags: [troubleshoot, firefox]
 categories:
 - 개발에 도움이 되는 글

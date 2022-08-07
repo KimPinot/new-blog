@@ -1,6 +1,6 @@
 ---
 title: nginx에서 자주 사용하는 문법
-date: 2020-02-26 03:34
+date: 2020-02-26 03:34:00
 tags: [nginx]
 categories:
 - 개발에 도움이 되는 글

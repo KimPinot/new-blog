@@ -1,6 +1,6 @@
 ---
 title: ES6 축약코딩
-date: 2020-02-26 03:50
+date: 2020-02-26 03:50:00
 tags: [javascript, es6]
 categories:
 - 개발에 도움이 되는 글

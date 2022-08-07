@@ -9,7 +9,7 @@ export type Metadata = {
   description: string;
   tags: string[];
   categories: string[];
-  date: Date;
+  date: number;
 };
 
 export type MetaDataWithFilename = Metadata & {
@@ -39,5 +39,9 @@ export async function getContent(filename: string): Promise<string> {
 }
 
 export async function getMetadata(filename: string): Promise<MetaDataWithFilename> {
-  return F.pipe(await filenameToRender(filename), pick("frontmatter"), joinObject({ filename }));
+  const { date, ...rest } = F.pipe(await filenameToRender(filename), pick("frontmatter"), joinObject({ filename }));
+  return {
+    ...rest,
+    date: +date,
+  };
 }

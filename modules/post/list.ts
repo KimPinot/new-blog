@@ -1,7 +1,7 @@
 import * as F from "fp-ts/function";
 import * as A from "fp-ts/Array";
 import * as S from "fp-ts/string";
-import * as D from "fp-ts/Date";
+import * as N from "fp-ts/number";
 import * as O from "fp-ts/Ord";
 import { readdir } from "fs/promises";
 import { isNotJunk } from "junk";
@@ -31,7 +31,7 @@ const getFilenames = async () =>
     A.map(deleteMdFileExtension),
   );
 const sortByDate = F.pipe(
-  D.Ord,
+  N.Ord,
   O.contramap((i: Metadata) => i.date),
   O.reverse,
 );
