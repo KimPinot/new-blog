@@ -3906,6 +3906,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"junk@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "junk@npm:4.0.0"
+  checksum: af79841fbdc0f3a8ec328a4bf68381013c7f52a78821184855a4b19ef95713edb3c30cd144c6393e6159e1b7dfb76b3f682dc983aafb54e52ff321ab1b4a9983
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^3.0.0":
   version: 3.1.0
   resolution: "keyv@npm:3.1.0"
@@ -4896,6 +4903,7 @@ __metadata:
     gray-matter: ^4.0.3
     i18next-browser-languagedetector: ^6.1.4
     i18next-http-backend: ^1.4.1
+    junk: ^4.0.0
     mdx-bundler: ^9.0.1
     next: 12.1.4
     next-superjson: ^0.0.4

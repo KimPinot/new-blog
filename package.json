@@ -22,6 +22,7 @@
     "gray-matter": "^4.0.3",
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.1",
+    "junk": "^4.0.0",
     "mdx-bundler": "^9.0.1",
     "next": "12.1.4",
     "next-superjson": "^0.0.4",
