@@ -12,14 +12,14 @@ type Props = {
   code: string;
 };
 
-  const Component = useMemo(() => getMDXComponent(code), [code]);
 const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
+  const RenderMDX = useMemo(() => getMDXComponent(code), [code]);
 
   return (
     <main>
       <h1 className="text-xl">article: {filename}</h1>
-      <Component />
       <h1 className="text-xl">date: {format(dateWithoutTimezone(meta.date), "yyyy-MM-dd hh:mm:ss")}</h1>
+      <RenderMDX />
     </main>
   );
 };
