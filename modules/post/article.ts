@@ -4,6 +4,8 @@ import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import { joinObject, pick } from "modules/utils/object";
 import remarkMdxCodeMeta from "remark-mdx-code-meta";
+import { slice } from "fp-ts/lib/string";
+import matter from "gray-matter";
 
 export type Metadata = {
   title: string;
@@ -29,6 +31,9 @@ const openMdx = (filename: string) =>
 type RenderReturns = {
   code: string;
   frontmatter: Metadata;
+  matter: {
+    content: string;
+  };
 };
 export const render = (markdown: string): Promise<RenderReturns> =>
   bundleMDX({
@@ -37,14 +42,14 @@ export const render = (markdown: string): Promise<RenderReturns> =>
     mdxOptions: (options) => ({
       ...options,
       remarkPlugins: [remarkMdxCodeMeta],
-      // rehypePlugins: [rehypePrism],
     }),
   });
 
 const filenameToRender = async (filename: string) => F.pipe(await openMdx(filename), render);
+const matterContent = async (filename: string) => F.pipe(await openMdx(filename), matter, pick("content"), render);
 
 export async function getContent(filename: string): Promise<string> {
-  return F.pipe(await filenameToRender(filename), pick("code"));
+  return F.pipe(await matterContent(filename), pick("code"));
 }
 
 export async function getMetadata(filename: string): Promise<MetaDataWithFilename> {
