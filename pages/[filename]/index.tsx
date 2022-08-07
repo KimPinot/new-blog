@@ -3,20 +3,23 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getContent, getMetadata } from "modules/post/article";
 import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
+import { format } from "date-fns";
+import { dateWithoutTimezone } from "modules/utils/date";
 
 type Props = {
   filename: string;
-  frontMatter: Record<string, any>;
+  meta: Record<string, any>;
   code: string;
 };
 
-const ArticleDetail: NextPage<Props> = ({ filename, code }) => {
   const Component = useMemo(() => getMDXComponent(code), [code]);
+const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
 
   return (
     <main>
       <h1 className="text-xl">article: {filename}</h1>
       <Component />
+      <h1 className="text-xl">date: {format(dateWithoutTimezone(meta.date), "yyyy-MM-dd hh:mm:ss")}</h1>
     </main>
   );
 };
