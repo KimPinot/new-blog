@@ -30,10 +30,6 @@ const nextConfig = {
   env: {
     production,
   },
-  i18n: {
-    defaultLocale: "ko",
-    locales: ["ko", "en"],
-  },
   serverRuntimeConfig: {
     API_HOST: HOST,
   },
