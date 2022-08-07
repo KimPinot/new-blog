@@ -437,7 +437,7 @@ async function handleRoomJoin(event: FormEvent<HTMLFormElement>) {
 
 결과적으로, 메인페이지는 이런식으로 작동하게 됩니다.
 
-<video controls src="./well_done.mov" style={{ width: "100%" }}></video>
+<video controls src="create-chat-app-with-nextjs-socketio-prisma-day-2/well_done.mov" style={{ width: "100%" }}></video>
 
 ## 채팅 페이지에 기능들을 추가하기
 

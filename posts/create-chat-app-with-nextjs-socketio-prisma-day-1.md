@@ -157,7 +157,7 @@ export default Home;
 
 어라? 요청이 API 경로인 `/api/socket.io` 가 아니라 페이지 경로인 `/socket.io` 로 연결되고 있습니다.
 
-![http://localhost:3000/socket.io 로 요청을 보내는 모습, 나는 이게 아니라 /api/socket.io에 연결될거라고 예상했는데...?](what.png)
+![http://localhost:3000/socket.io 로 요청을 보내는 모습, 나는 이게 아니라 /api/socket.io에 연결될거라고 예상했는데...?](create-chat-app-with-nextjs-socketio-prisma-day-1/what.png)
 
 
 
@@ -165,7 +165,7 @@ export default Home;
 
 살펴보니 socket.io 를 init 할 때 path 라는 환경변수가 지정되어있지 않다면 기본값으로 `/socket.io` 로 설정된다고 합니다.
 
-![socket.io 공식 문서에 적힌 내용, path 값을 설정해주면 socket.io 서버에 연결하는 경로를 바꿀 수 있다고 적혀있다.](ah-ha.png)
+![socket.io 공식 문서에 적힌 내용, path 값을 설정해주면 socket.io 서버에 연결하는 경로를 바꿀 수 있다고 적혀있다.](create-chat-app-with-nextjs-socketio-prisma-day-1/ah-ha.png)
 
 
 
@@ -181,7 +181,7 @@ const socket = io("", {
 
 연결이 잘 됩니다! 만세!
 
-![성공적으로 socket.io 서버에 연결된 모습](good.png)
+![성공적으로 socket.io 서버에 연결된 모습](create-chat-app-with-nextjs-socketio-prisma-day-1/good.png)
 
 
 
@@ -269,7 +269,7 @@ export default async (req: NextApiRequest, res: NextApiResponseServerIO) => {
 };
 ```
 
-Paw와 같은 CURL 툴로 요청을 보내면 이런식으로 요청이 출력됩니다.![API로 커스텀 요청을 보낸 모습, WebSocket에서 정상적으로 데이터가 표시된다.](socket-io-test.png)
+Paw와 같은 CURL 툴로 요청을 보내면 이런식으로 요청이 출력됩니다.![API로 커스텀 요청을 보낸 모습, WebSocket에서 정상적으로 데이터가 표시된다.](create-chat-app-with-nextjs-socketio-prisma-day-1/socket-io-test.png)
 
 ## 채팅 이벤트가 발생했을 때 채팅 로그에 추가하기
 
@@ -318,7 +318,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
 
 
 
-<video src="./it_works!.mov" controls  style={{ width: "100%" }}></video>
+<video src="create-chat-app-with-nextjs-socketio-prisma-day-1/it_works!.mov" controls  style={{ width: "100%" }}></video>
 
 
 

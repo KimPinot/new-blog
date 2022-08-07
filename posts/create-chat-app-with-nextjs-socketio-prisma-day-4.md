@@ -51,7 +51,7 @@ categories:
 
 # 새로고침을 해도 세션을 유지시키는 기능 만들기
 
-<video controls src="./refresh_and_what.mov" style={{ width: "100%" }}></video>
+<video controls src="create-chat-app-with-nextjs-socketio-prisma-day-4/refresh_and_what.mov" style={{ width: "100%" }}></video>
 
 (새로고침을 했더니... 세션이 사라졌다고...!?)
 
@@ -140,7 +140,7 @@ export default UserContextProvider;
 
 이제 새로고침을 해도 유저 정보가 사라지지 않습니다 (만세!)
 
-<video src="./refresh_and_work.mov" controls width="100%;"></video>
+<video src="create-chat-app-with-nextjs-socketio-prisma-day-4/refresh_and_work.mov" controls width="100%;"></video>
 
 
 
