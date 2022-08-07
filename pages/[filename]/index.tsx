@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import { format } from "date-fns";
 import { dateWithoutTimezone } from "modules/utils/date";
 import { BiTime } from "react-icons/bi";
+import { RenderMDX } from "components/RenderMDX";
 
 type Props = {
   filename: string;
@@ -14,8 +15,6 @@ type Props = {
 };
 
 const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
-  const RenderMDX = useMemo(() => getMDXComponent(code), [code]);
-
   return (
     <div>
       <header>
@@ -28,7 +27,7 @@ const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
       </header>
       <article>
         <div className="container mx-auto p-5 pt-0">
-          <RenderMDX />
+          <RenderMDX code={code} />
         </div>
       </article>
     </div>
