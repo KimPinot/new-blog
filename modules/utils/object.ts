@@ -6,6 +6,6 @@ export const joinObject =
   });
 
 export const pick =
-  <T extends Record<string, any>>(key: keyof T) =>
+  <T, K extends keyof T>(key: K) =>
   (object: T) =>
     object[key];
