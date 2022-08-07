@@ -1,7 +1,7 @@
 import * as F from "fp-ts/function";
 import * as A from "fp-ts/Array";
 import * as S from "fp-ts/string";
-import * as D from "fp-ts/date";
+import * as D from "fp-ts/Date";
 import * as O from "fp-ts/Ord";
 import { readdir } from "fs/promises";
 import path from "path";
