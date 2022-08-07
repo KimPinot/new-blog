@@ -1,8 +1,6 @@
 import { getPostsStaticParams } from "modules/post/list";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getContent, getMetadata } from "modules/post/article";
-import { getMDXComponent } from "mdx-bundler/client";
-import { useMemo } from "react";
 import { format } from "date-fns";
 import { dateWithoutTimezone } from "modules/utils/date";
 import { BiTime } from "react-icons/bi";

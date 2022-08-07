@@ -1,6 +1,5 @@
 import * as F from "fp-ts/function";
 import fs from "fs/promises";
-import matter from "gray-matter";
 import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import { joinObject, pick } from "modules/utils/object";

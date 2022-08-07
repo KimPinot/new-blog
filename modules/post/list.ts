@@ -4,7 +4,6 @@ import * as S from "fp-ts/string";
 import * as D from "fp-ts/Date";
 import * as O from "fp-ts/Ord";
 import { readdir } from "fs/promises";
-import path from "path";
 import { isNotJunk } from "junk";
 import { getMetadata, Metadata } from "./article";
 import { promiseAll } from "modules/utils/promise";
