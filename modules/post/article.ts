@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import { joinObject, pick } from "modules/utils/object";
+import remarkMdxCodeMeta from "remark-mdx-code-meta";
 
 export type Metadata = {
   title: string;
@@ -33,6 +34,11 @@ export const render = (markdown: string): Promise<RenderReturns> =>
   bundleMDX({
     source: markdown,
     cwd: path.resolve(),
+    mdxOptions: (options) => ({
+      ...options,
+      remarkPlugins: [remarkMdxCodeMeta],
+      // rehypePlugins: [rehypePrism],
+    }),
   });
 
 const filenameToRender = async (filename: string) => F.pipe(await openMdx(filename), render);

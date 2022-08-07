@@ -8,3 +8,23 @@
 .keep-all {
     word-break: keep-all;
 }
+
+ul ul {
+    list-style: circle !important;
+}
+
+ul ul ul {
+    list-style: square !important;
+}
+
+ul ul ul ul {
+    list-style: disc !important;
+}
+
+ul ul ul ul ul {
+    list-style: square !important;
+}
+
+ul ul ul ul ul ul {
+    list-style: disc !important;
+}

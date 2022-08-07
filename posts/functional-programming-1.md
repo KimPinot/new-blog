@@ -23,7 +23,7 @@ tags:
 
 * 전체 코드는 아래와 같습니다.
 
-```typescript
+```typescript filename="all.ts"
 import { TokenMeta as Meta, TokenVisible as Visible } from "constants/database";
 import { Numeric } from "../types";
 import { pipe } from "fp-ts/lib/function";

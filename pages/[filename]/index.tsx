@@ -17,7 +17,7 @@ const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
   return (
     <>
       <Head>
-        <title>nabi.kim | {meta.title}</title>
+        <title>{`nabi.kim | ${meta.title}`}</title>
         <meta property="og:title" content={`nabi.kim | ${meta.title}`} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:image" content={meta.thumbnail ?? "/assets/opengraph.png"} />
