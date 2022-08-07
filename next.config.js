@@ -1,6 +1,3 @@
-const production = process.env.VERCEL_ENV === "production";
-const VERCEL_ENV = process.env.VERCEL_ENV || "local";
-
 function getExcludedConsole() {
   const excluded = ["error"];
 
@@ -15,8 +12,7 @@ function getExcludedConsole() {
   return excluded;
 }
 
-const HTTPS = Boolean(process.env.HTTPS) ? "https" : "http";
-const HOST = process.env.VERCEL ? "" : `${HTTPS}://${process.env.HOST || "localhost:3000"}`;
+const production = process.env.NODE_ENV === "production";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -29,14 +25,6 @@ const nextConfig = {
   },
   env: {
     production,
-  },
-  serverRuntimeConfig: {
-    API_HOST: HOST,
-  },
-  publicRuntimeConfig: {
-    VERCEL_ENV,
-    COMMIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA || "local-development",
-    API_HOST: HOST,
   },
   assetPrefix: "./",
 };
