@@ -1,18 +1,22 @@
 import { getPostsStaticParms } from "modules/post/list";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { evaluate } from "@mdx-js/mdx";
 import { getArticle } from "modules/post/article";
+import { getMDXComponent } from "mdx-bundler/client";
+import { useMemo } from "react";
 
 type Props = {
   filename: string;
-  meta: Record<string, any>;
-  content: string;
+  frontMatter: Record<string, any>;
+  code: string;
 };
 
-const ArticleDetail: NextPage<Props> = ({ filename, content }) => {
+const ArticleDetail: NextPage<Props> = ({ filename, code }) => {
+  const Component = useMemo(() => getMDXComponent(code), [code]);
+
   return (
     <main>
       <h1 className="text-xl">article: {filename}</h1>
+      <Component />
     </main>
   );
 };
@@ -25,12 +29,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { meta, content } = await getArticle(String(params?.filename));
+  const { code, frontmatter } = await getArticle(String(params?.filename));
   return {
     props: {
       filename: params?.filename,
-      meta,
-      content,
+      code,
+      frontmatter,
     },
   };
 };
