@@ -3,6 +3,8 @@ import * as A from "fp-ts/Array";
 import * as S from "fp-ts/string";
 import { readdir } from "fs/promises";
 import path from "path";
+import { meta } from "./article";
+import { promiseAll } from "modules/utils/promise";
 
 const readDirWithoutFiletypes = (path: string) => readdir(path, { withFileTypes: false });
 
@@ -21,3 +23,4 @@ const dirToStaticPath = (files: string[]) => F.pipe(files, A.map(staticPath));
 
 export const getPostsStaticParms = async () => F.pipe(await readDir("./posts"), dirToStaticPath);
 export const getPostsList = async () => F.pipe(await readdir("./posts"), A.map(deleteMdFileExtension));
+export const getPostsMeta = async () => F.pipe(await getPostsList(), A.map(meta), promiseAll);
