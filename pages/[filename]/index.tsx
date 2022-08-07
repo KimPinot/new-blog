@@ -1,4 +1,4 @@
-import { dirToStaticPath, readDir } from "modules/post";
+import { getPostsStaticParms } from "modules/post";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 type Props = {
@@ -15,7 +15,7 @@ const ArticleDetail: NextPage<Props> = ({ filename }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: dirToStaticPath(await readDir("./posts")),
+    paths: await getPostsStaticParms(),
     fallback: false,
   };
 };

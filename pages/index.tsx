@@ -1,6 +1,4 @@
-import * as F from "fp-ts/function";
-import * as A from "fp-ts/Array";
-import { deleteMdFileExtension, readDir } from "modules/post";
+import { getPostsList } from "modules/post";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 
@@ -26,10 +24,11 @@ const Home: NextPage<Props> = ({ articles }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const dirs = await readDir("./posts");
+  const dirs = await getPostsList();
+  console.log(dirs);
   return {
     props: {
-      articles: F.pipe(dirs, A.map(deleteMdFileExtension)),
+      articles: dirs,
     },
   };
 };
