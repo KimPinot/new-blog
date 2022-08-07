@@ -1,4 +1,4 @@
-import { getPostsStaticParms } from "modules/post";
+import { getPostsStaticParms } from "modules/post/list";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 type Props = {

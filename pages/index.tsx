@@ -1,4 +1,4 @@
-import { getPostsList } from "modules/post";
+import { getPostsList } from "modules/post/list";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 

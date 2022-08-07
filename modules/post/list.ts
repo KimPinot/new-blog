@@ -6,7 +6,7 @@ import path from "path";
 
 const readDirWithoutFiletypes = (path: string) => readdir(path, { withFileTypes: false });
 
-const deleteMdFileExtension = (filename: string) => F.pipe(filename, S.replace(".md", ""));
+const deleteMdFileExtension = (filename: string) => F.pipe(filename, S.replace(".mdx", ""));
 
 const staticPathObj = (filename: string) => ({
   params: {
