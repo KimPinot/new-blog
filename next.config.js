@@ -23,6 +23,9 @@ const nextConfig = {
       exclude: getExcludedConsole(),
     },
   },
+  images: {
+    loader: ({ src }) => `/${src}`,
+  },
   env: {
     production,
   },
