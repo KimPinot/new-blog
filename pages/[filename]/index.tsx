@@ -5,6 +5,7 @@ import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
 import { format } from "date-fns";
 import { dateWithoutTimezone } from "modules/utils/date";
+import { BiTime } from "react-icons/bi";
 
 type Props = {
   filename: string;
@@ -16,11 +17,21 @@ const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
   const RenderMDX = useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <main>
-      <h1 className="text-xl">article: {filename}</h1>
-      <h1 className="text-xl">date: {format(dateWithoutTimezone(meta.date), "yyyy-MM-dd hh:mm:ss")}</h1>
-      <RenderMDX />
-    </main>
+    <div>
+      <header>
+        <div className="container mx-auto p-5">
+          <h1 className="text-2xl font-bold">{meta.title}</h1>
+          <h3 className="text-lg flex gap-2 items-center">
+            <BiTime /> {format(dateWithoutTimezone(meta.date), "yyyy-MM-dd hh:mm:ss")}
+          </h3>
+        </div>
+      </header>
+      <article>
+        <div className="container mx-auto p-5 pt-0">
+          <RenderMDX />
+        </div>
+      </article>
+    </div>
   );
 };
 
