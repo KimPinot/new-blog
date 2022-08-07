@@ -1,6 +1,6 @@
 import { getPostsStaticParms } from "modules/post/list";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { getArticle } from "modules/post/article";
+import { getContent, getMetadata } from "modules/post/article";
 import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
 
@@ -29,12 +29,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { code, frontmatter } = await getArticle(String(params?.filename));
+  const filename = params?.filename as string;
+
   return {
     props: {
-      filename: params?.filename,
-      code,
-      frontmatter,
+      filename,
+      code: await getContent(filename),
+      meta: await getMetadata(filename),
     },
   };
 };

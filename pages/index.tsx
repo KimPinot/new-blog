@@ -10,6 +10,7 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ articles }) => {
+  console.log(articles);
   return (
     <div className="p-5">
       <h1>Hello NextJS!</h1>
