@@ -24,13 +24,15 @@ const nextConfig = {
     },
   },
   images: {
-    loader: ({ src }) => `/${src}`,
+    loader: "custom",
   },
   env: {
     production,
   },
   assetPrefix: "./",
+  experimental: {
+    swcPlugins: ["next-superjson-plugin"],
+  },
 };
 
-const { withSuperjson } = require("next-superjson");
-module.exports = withSuperjson(nextConfig);
+module.exports = nextConfig;
