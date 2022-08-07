@@ -20,7 +20,8 @@ export type MetaDataWithFilename = Metadata & {
 const readFile = (dir: string) => (filename: string) => (extension: string) =>
   fs.readFile(path.join(path.resolve(dir), `${filename}.${extension}`), "utf-8");
 
-const openMdx = (filename: string) => readFile("./posts")(filename)("mdx");
+const openMdx = (filename: string) =>
+  readFile("./posts")(filename)("mdx").catch(() => readFile("./posts")(filename)("md"));
 
 type RenderReturns = {
   code: string;

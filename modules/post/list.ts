@@ -10,7 +10,7 @@ import { promiseAll } from "modules/utils/promise";
 
 const readDirWithoutFiletypes = (path: string) => readdir(path, { withFileTypes: false });
 
-const deleteMdFileExtension = (filename: string) => F.pipe(filename, S.replace(".mdx", ""));
+const deleteMdFileExtension = (filename: string) => F.pipe(filename, S.replace(/.md(x)?/g, ""));
 
 const staticPathObj = (filename: string) => ({
   params: {
