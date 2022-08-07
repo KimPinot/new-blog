@@ -12,6 +12,5 @@ const matterObjToObj = async (matter: matter.GrayMatterFile<string>) => ({
   meta: matter.data,
 });
 
-const matterExcludeExcerpt = (markdown: string) => matter(markdown, { excerpt: false });
 export const getMattered = (markdown: string) => F.pipe(markdown, matter, matterObjToObj);
 export const getArticle = async (filename: string) => F.pipe(await readFile("./posts")(filename)("mdx"), getMattered);
