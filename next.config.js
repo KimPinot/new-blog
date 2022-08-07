@@ -38,6 +38,7 @@ const nextConfig = {
     COMMIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA || "local-development",
     API_HOST: HOST,
   },
+  assetPrefix: "./",
 };
 
 module.exports = nextConfig;
