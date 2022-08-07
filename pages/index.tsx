@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { getPosts } from "modules/post/list";
+import { getSortedPosts } from "modules/post/list";
 import { dateWithoutTimezone } from "modules/utils/date";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
@@ -33,7 +33,7 @@ const Home: NextPage<Props> = ({ articles }) => {
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      articles: await getPosts(),
+      articles: await getSortedPosts(),
     },
   };
 };

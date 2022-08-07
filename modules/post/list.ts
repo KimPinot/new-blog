@@ -1,9 +1,11 @@
 import * as F from "fp-ts/function";
 import * as A from "fp-ts/Array";
 import * as S from "fp-ts/string";
+import * as D from "fp-ts/date";
+import * as O from "fp-ts/Ord";
 import { readdir } from "fs/promises";
 import path from "path";
-import { getMetadata } from "./article";
+import { getMetadata, Metadata } from "./article";
 import { promiseAll } from "modules/utils/promise";
 
 const readDirWithoutFiletypes = (path: string) => readdir(path, { withFileTypes: false });
@@ -24,4 +26,10 @@ const dirToStaticPath = (files: string[]) => F.pipe(files, A.map(staticPath));
 export const getPostsStaticParms = async () => F.pipe(await readDir("./posts"), dirToStaticPath);
 
 const getFilenames = async () => F.pipe(await readdir("./posts"), A.map(deleteMdFileExtension));
+const sortByDate = F.pipe(
+  D.Ord,
+  O.contramap((i: Metadata) => i.date),
+  O.reverse,
+);
 export const getPosts = async () => F.pipe(await getFilenames(), A.map(getMetadata), promiseAll);
+export const getSortedPosts = async () => F.pipe(await getPosts(), A.sort(sortByDate));
