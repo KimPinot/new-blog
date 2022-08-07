@@ -22,5 +22,6 @@ const readDir = (targetDir: string) => F.pipe(targetDir, path.resolve, readDirWi
 const dirToStaticPath = (files: string[]) => F.pipe(files, A.map(staticPath));
 
 export const getPostsStaticParms = async () => F.pipe(await readDir("./posts"), dirToStaticPath);
-export const getPostsList = async () => F.pipe(await readdir("./posts"), A.map(deleteMdFileExtension));
+
+const getPostsList = async () => F.pipe(await readdir("./posts"), A.map(deleteMdFileExtension));
 export const getPostsMeta = async () => F.pipe(await getPostsList(), A.map(meta), promiseAll);

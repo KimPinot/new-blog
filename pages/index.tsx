@@ -1,9 +1,12 @@
-import { getPostsList } from "modules/post/list";
+import { getPostsMeta } from "modules/post/list";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 
 type Props = {
-  articles: string[];
+  articles: {
+    filename: string;
+    title: string;
+  }[];
 };
 
 const Home: NextPage<Props> = ({ articles }) => {
@@ -12,9 +15,9 @@ const Home: NextPage<Props> = ({ articles }) => {
       <h1>Hello NextJS!</h1>
       <ul>
         {articles.map((item) => (
-          <li key={item}>
-            <Link href={`/${item}`}>
-              <a className="link link-primary">{item}</a>
+          <li key={item.filename}>
+            <Link href={`/${item.filename}`}>
+              <a className="link link-primary">{item.title}</a>
             </Link>
           </li>
         ))}
@@ -24,11 +27,9 @@ const Home: NextPage<Props> = ({ articles }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const dirs = await getPostsList();
-  console.log(dirs);
   return {
     props: {
-      articles: dirs,
+      articles: await getPostsMeta(),
     },
   };
 };
