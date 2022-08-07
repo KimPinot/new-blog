@@ -6,7 +6,7 @@ categories: [의미있는 헛소리]
 tags: [장비 이야기]
 ---
 
-<span style="font-size: 1px; line-height: 1px;">장비는 있는데 왜 유비는 없냐고 말한 저의 친애하는 트친에게 이 글을 안바칩니다</span>
+<span style={{ fontSize: 1, lineHeight: 1 }}>장비는 있는데 왜 유비는 없냐고 말한 저의 친애하는 트친에게 이 글을 안바칩니다</span>
 
 
 안녕하세요. 저는 프론트엔드 개발을 하고 있는 나비라고 합니다.
