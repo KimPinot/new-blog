@@ -1,4 +1,4 @@
-import { getPostsStaticParms } from "modules/post/list";
+import { getPostsStaticParams } from "modules/post/list";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getContent, getMetadata } from "modules/post/article";
 import { getMDXComponent } from "mdx-bundler/client";
@@ -36,7 +36,7 @@ const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: await getPostsStaticParms(),
+    paths: await getPostsStaticParams(),
     fallback: false,
   };
 };

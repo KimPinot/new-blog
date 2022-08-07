@@ -11,8 +11,6 @@ import { promiseAll } from "modules/utils/promise";
 import { pick } from "modules/utils/object";
 import { Dirent } from "fs";
 
-const readDirWithoutFiletypes = (path: string) => readdir(path, { withFileTypes: false });
-
 const deleteMdFileExtension = (filename: string) => F.pipe(filename, S.replace(/.md(x)?/g, ""));
 
 const staticPathObj = (filename: string) => ({
@@ -22,11 +20,7 @@ const staticPathObj = (filename: string) => ({
 });
 
 const staticPath = (filename: string) => F.pipe(filename, deleteMdFileExtension, staticPathObj);
-
-const readDir = (targetDir: string) => F.pipe(targetDir, path.resolve, readDirWithoutFiletypes);
 const dirToStaticPath = (files: string[]) => F.pipe(files, A.map(staticPath));
-
-export const getPostsStaticParms = async () => F.pipe(await readDir("./posts"), dirToStaticPath);
 
 const isNotFolder = (i: Dirent) => !i.isDirectory();
 const getFilenames = async () =>
@@ -42,5 +36,7 @@ const sortByDate = F.pipe(
   O.contramap((i: Metadata) => i.date),
   O.reverse,
 );
+
+export const getPostsStaticParams = async () => F.pipe(await getFilenames(), dirToStaticPath);
 export const getPosts = async () => F.pipe(await getFilenames(), A.map(getMetadata), promiseAll);
 export const getSortedPosts = async () => F.pipe(await getPosts(), A.sort(sortByDate));
