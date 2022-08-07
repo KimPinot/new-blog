@@ -35,7 +35,8 @@ const sortByDate = F.pipe(
   O.contramap((i: Metadata) => i.date),
   O.reverse,
 );
+const keepNotListHidden = (i: Metadata) => !i.hide?.list;
 
 export const getPostsStaticParams = async () => F.pipe(await getFilenames(), dirToStaticPath);
 export const getPosts = async () => F.pipe(await getFilenames(), A.map(getMetadata), promiseAll);
-export const getSortedPosts = async () => F.pipe(await getPosts(), A.sort(sortByDate));
+export const getSortedPosts = async () => F.pipe(await getPosts(), A.filter(keepNotListHidden), A.sort(sortByDate));

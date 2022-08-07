@@ -10,6 +10,9 @@ export type Metadata = {
   tags: string[];
   categories: string[];
   date: number;
+  hide?: {
+    list?: boolean;
+  };
 };
 
 export type MetaDataWithFilename = Metadata & {
