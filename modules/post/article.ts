@@ -4,8 +4,9 @@ import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import { joinObject, pick } from "modules/utils/object";
 import remarkMdxCodeMeta from "remark-mdx-code-meta";
-import { slice } from "fp-ts/lib/string";
+import remarkGfm from "remark-gfm";
 import matter from "gray-matter";
+import remarkRehype from "remark-rehype";
 
 export type Metadata = {
   title: string;
@@ -41,7 +42,7 @@ export const render = (markdown: string): Promise<RenderReturns> =>
     cwd: path.resolve(),
     mdxOptions: (options) => ({
       ...options,
-      remarkPlugins: [remarkMdxCodeMeta],
+      remarkPlugins: [remarkMdxCodeMeta, remarkGfm, remarkRehype],
     }),
   });
 
