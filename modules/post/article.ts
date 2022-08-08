@@ -6,7 +6,9 @@ import { joinObject, pick } from "modules/utils/object";
 import remarkMdxCodeMeta from "remark-mdx-code-meta";
 import remarkGfm from "remark-gfm";
 import matter from "gray-matter";
-import remarkRehype from "remark-rehype";
+import remarkGithub from "remark-github";
+import remarkGemoji from "remark-gemoji";
+import remarkBreaks from "remark-breaks";
 
 export type Metadata = {
   title: string;
@@ -42,7 +44,18 @@ export const render = (markdown: string): Promise<RenderReturns> =>
     cwd: path.resolve(),
     mdxOptions: (options) => ({
       ...options,
-      remarkPlugins: [remarkMdxCodeMeta, remarkGfm, remarkRehype],
+      remarkPlugins: [
+        remarkMdxCodeMeta,
+        remarkGfm,
+        [
+          remarkGithub,
+          {
+            repository: "KimPinot/new-blog",
+          },
+        ],
+        remarkGemoji,
+        remarkBreaks,
+      ],
     }),
   });
 
