@@ -42,7 +42,7 @@ const components: IComponents = {
         PreTag="div"
         style={theme}
         language={match[1]}
-        customStyle={{ padding: "1.5rem", marginBottom: "1.5rem", marginTop: "1.5rem" }}
+        customStyle={{ padding: "1.5rem", marginBottom: "0.5rem", marginTop: "0.5rem" }}
         {...props}
       />
     ) : (
