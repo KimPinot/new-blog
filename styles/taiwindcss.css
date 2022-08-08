@@ -23,6 +23,6 @@
   }
 
   .page-content {
-    @apply container max-w-5xl mx-auto py-4 keep-all;
+    @apply container max-w-5xl mx-auto py-4 px-5 keep-all;
   }
 }
