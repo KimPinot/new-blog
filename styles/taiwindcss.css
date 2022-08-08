@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    
+@layer base {
+  blockquote {
+    @apply border-l-4 border-l-slate-200 bg-slate-50 p-3;
+  }
+
+  code,
+  code span {
+    -webkit-font-smoothing: auto;
+    font-feature-settings: "liga" on, "calt" on;
+    text-rendering: optimizeLegibility;
+    font-weight: 500;
+    font-family: "JetBrains Mono", sans-serif;
+  }
 }

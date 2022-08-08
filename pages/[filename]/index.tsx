@@ -30,8 +30,8 @@ const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
           </h3>
         </div>
       </header>
-      <article>
-        <div className="container mx-auto p-5 pt-0">
+      <article className="makrdown-content">
+        <div className="container mx-auto px-5 pb-36 flex flex-col gap-2">
           <RenderMDX code={code} />
         </div>
       </article>
