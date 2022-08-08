@@ -1,31 +1,29 @@
 import { format } from "date-fns";
+import { MetaDataWithFilename } from "modules/post/article";
 import { getSortedPosts } from "modules/post/list";
 import { dateWithoutTimezone } from "modules/utils/date";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 
 type Props = {
-  articles: {
-    filename: string;
-    title: string;
-    date: Date;
-  }[];
+  articles: MetaDataWithFilename[];
 };
 
 const Home: NextPage<Props> = ({ articles }) => {
   console.log(articles);
   return (
-    <div className="p-5 container mx-auto">
-      <ul className="flex flex-col gap-1">
-        {articles.map((item) => (
-          <li key={item.filename} className="flex gap-8" title={item.title}>
-            <span className="text-lg">{format(dateWithoutTimezone(item.date), "yyyy-MM-dd")}</span>
-            <Link href={`/${item.filename}`}>
-              <a className="text-xl hover:text-primary transition-colors">{item.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="p-5 container mx-auto py-4 keep-all">
+      {articles.map((item) => (
+        <div key={item.filename} className="flex flex-col py-4 gap-y-1" title={item.title}>
+          <Link href={`/${item.filename}`}>
+            <a className="flex-1 text-2xl hover:text-primary transition-colors font-bold">{item.title}</a>
+          </Link>
+          <p className="text-base text-slate-700">{item.description}</p>
+          <span className="font-[inherit] text-base text-slate-400">
+            {format(dateWithoutTimezone(item.date), "yyyy-MM-dd")}
+          </span>
+        </div>
+      ))}
     </div>
   );
 };
