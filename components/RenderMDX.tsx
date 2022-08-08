@@ -30,6 +30,14 @@ const components: IComponents = {
   // eslint-disable-next-line @next/next/no-img-element
   img: ({ src, alt, ...props }) => <img className="card" src={src} alt={alt} {...props} />,
   a: (props) => <a {...props} className="link link-hover link-primary underline-offset-4" />,
+  input: ({ type, ...props }) => {
+    switch (type) {
+      case "checkbox":
+        return <input type="checkbox" className={"inline-block checkbox checkbox-sm -mb-1"} {...props} />;
+      default:
+        return <input type={type} {...props} />;
+    }
+  },
   pre: ({ filename, children, ...props }) => (
     <pre className="font-monospace" {...props}>
       {children}
