@@ -4,7 +4,7 @@ import Image from "./Image";
 export function Header() {
   return (
     <header>
-      <div className="container pt-5 px-5 mx-auto flex items-center justify-between">
+      <div className="page-content pb-0 flex items-center justify-between">
         <Link href="/">
           <a className="avatar w-16 h-16 btn btn-square btn-xs btn-ghost">
             <Image src="/assets/avatar.png" alt="" layout="fill" />

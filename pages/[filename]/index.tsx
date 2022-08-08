@@ -23,7 +23,7 @@ const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
         <meta property="og:image" content={meta.thumbnail ?? "/assets/opengraph.png"} />
       </Head>
       <header>
-        <div className="container mx-auto p-5">
+        <div className="page-content">
           <h1 className="text-2xl font-bold">{meta.title}</h1>
           <h3 className="text-lg flex gap-2 items-center">
             <BiTime /> {format(dateWithoutTimezone(meta.date), "yyyy-MM-dd hh:mm:ss")}
@@ -31,7 +31,7 @@ const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
         </div>
       </header>
       <article className="makrdown-content">
-        <div className="container mx-auto px-5 pb-36 flex flex-col gap-2">
+        <div className="page-content pt-0 pb-36 flex flex-col gap-2">
           <RenderMDX code={code} />
         </div>
       </article>

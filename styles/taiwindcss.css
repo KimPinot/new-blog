@@ -16,3 +16,13 @@
     font-family: "JetBrains Mono", sans-serif;
   }
 }
+
+@layer components {
+  .keep-all {
+    word-break: keep-all;
+  }
+
+  .page-content {
+    @apply container max-w-5xl mx-auto py-4 keep-all;
+  }
+}

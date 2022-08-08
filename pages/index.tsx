@@ -12,7 +12,7 @@ type Props = {
 const Home: NextPage<Props> = ({ articles }) => {
   console.log(articles);
   return (
-    <div className="p-5 container mx-auto py-4 keep-all">
+    <div className="page-content">
       {articles.map((item) => (
         <div key={item.filename} className="flex flex-col py-4 gap-y-1" title={item.title}>
           <Link href={`/${item.filename}`}>

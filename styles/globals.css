@@ -6,10 +6,6 @@
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
 }
 
-.keep-all {
-  word-break: keep-all;
-}
-
 ul ul {
   list-style: circle !important;
 }
