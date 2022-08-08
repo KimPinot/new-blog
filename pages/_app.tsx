@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import AlertContextProvider from "contexts/AlertContext";
 import { Header } from "components/Header";
 import Head from "next/head";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -28,6 +29,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Header />
       <Component {...pageProps} />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-FSPPFRL14L" strategy="afterInteractive" />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-FSPPFRL14L');
+        `}
+      </Script>
     </AlertContextProvider>
   );
 }
