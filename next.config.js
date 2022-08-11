@@ -31,7 +31,7 @@ const nextConfig = {
   },
   assetPrefix: "./",
   experimental: {
-    swcPlugins: ["next-superjson-plugin"],
+    swcPlugins: [["next-superjson-plugin", { excluded: [] }]],
   },
 };
 
