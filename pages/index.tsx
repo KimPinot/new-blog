@@ -10,7 +10,6 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ articles }) => {
-  console.log(articles);
   return (
     <div className="page-content">
       {articles.map((item) => (
