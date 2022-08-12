@@ -1,11 +1,8 @@
 import { getPostsStaticParams } from "modules/post/list";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getContent, getMetadata } from "modules/post/article";
-import { format } from "date-fns";
-import { dateWithoutTimezone } from "modules/utils/date";
-import { BiTime } from "react-icons/bi";
 import { RenderMDX } from "components/RenderMDX";
-import Head from "next/head";
+import { ArticleLayout } from "components/layout/ArticleLayout";
 
 type Props = {
   filename: string;
@@ -15,27 +12,9 @@ type Props = {
 
 const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
   return (
-    <main id={filename}>
-      <Head>
-        <title>{`nabi.kim | ${meta.title}`}</title>
-        <meta property="og:title" content={`nabi.kim | ${meta.title}`} />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content={meta.thumbnail ?? "/assets/opengraph.png"} />
-      </Head>
-      <header>
-        <div className="page-content">
-          <h1 className="text-2xl font-bold">{meta.title}</h1>
-          <h3 className="text-lg flex gap-2 items-center">
-            <BiTime /> {format(dateWithoutTimezone(meta.date), "yyyy-MM-dd hh:mm:ss")}
-          </h3>
-        </div>
-      </header>
-      <article className="makrdown-content">
-        <div className="page-content pt-0 pb-36 flex flex-col gap-2">
-          <RenderMDX code={code} />
-        </div>
-      </article>
-    </main>
+    <ArticleLayout id={filename} title={meta.title} description={meta.description} date={meta.date}>
+      <RenderMDX code={code} />
+    </ArticleLayout>
   );
 };
 
