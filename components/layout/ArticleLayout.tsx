@@ -30,7 +30,7 @@ export function ArticleLayout({ title, description, thumbnail, date, children, .
         </div>
       </header>
       <article className="makrdown-content">
-        <div className="page-content pb-36 flex flex-col gap-2">{children}</div>
+        <div className="page-content pt-0 pb-36 flex flex-col gap-2">{children}</div>
       </article>
     </main>
   );
