@@ -19,6 +19,13 @@
   .markdown-table th:first-child {
     position: relative !important;
   }
+
+  .markdown-h1:first-child,
+  .markdown-h2:first-child,
+  .markdown-h3:first-child,
+  .markdown-h4:first-child {
+    margin-top: unset;
+  }
 }
 
 @layer components {
