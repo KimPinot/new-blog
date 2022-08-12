@@ -17,26 +17,21 @@ type CollapseProps = Props & {
 };
 
 export function Collapse({ children, collapse }: CollapseProps) {
+  const height = {
+    hidden: {
+      marginTop: -8,
+      height: 0,
+      opacity: 0,
+    },
+    show: {
+      marginTop: 0,
+      height: "auto",
+      opacity: 1,
+    },
+  };
   return (
-    <AnimatePresence exitBeforeEnter>
-      {!collapse ? (
-        <motion.div
-          initial={{
-            height: 0,
-            opacity: 0,
-          }}
-          animate={{
-            height: "auto",
-            opacity: 1,
-          }}
-          exit={{
-            height: 0,
-            opacity: 0,
-          }}
-        >
-          {children}
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+    <motion.div initial={false} animate={collapse ? "show" : "hidden"} variants={height}>
+      {children}
+    </motion.div>
   );
 }

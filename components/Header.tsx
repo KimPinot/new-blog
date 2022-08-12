@@ -21,6 +21,11 @@ export function Header() {
               <span className="text-md hover:text-primary transition-[color]">About</span>
             </a>
           </Link>
+          <Link href="/cv">
+            <a className="btn btn-ghost btn-xs">
+              <span className="text-md hover:text-primary transition-[color]">CV</span>
+            </a>
+          </Link>
         </div>
       </div>
     </header>
