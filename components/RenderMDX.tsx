@@ -2,7 +2,8 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import theme from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light";
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client";
 import { ComponentProps, HTMLProps, useMemo } from "react";
-import { H1 as h1, H2 as h2, H3 as h3, H4 as h4, P as p } from "./markdown/typography";
+import { Code as code, H1 as h1, H2 as h2, H3 as h3, H4 as h4, P as p } from "./markdown/typography";
+import { Ul } from "./markdown/list";
 
 type Props = {
   code: string;
@@ -27,7 +28,7 @@ const components: IComponents = {
   h3,
   h4,
   p,
-  ul: ({ children }) => <ul className="markdown-ul list-disc pl-5">{children}</ul>,
+  ul: Ul,
   ol: ({ children }) => <ul className="markdown-ul list-decimal pl-5">{children}</ul>,
   table: ({ children }) => (
     <div className="overflow-x-auto">
@@ -50,20 +51,7 @@ const components: IComponents = {
       {children}
     </pre>
   ),
-  code: ({ className, ...props }) => {
-    const match = /language-(\w+)/.exec(className || "");
-    return match ? (
-      <SyntaxHighlighter
-        PreTag="div"
-        style={theme}
-        language={match[1]}
-        customStyle={{ padding: "1.5rem", marginBottom: "0.5rem", marginTop: "0.5rem" }}
-        {...props}
-      />
-    ) : (
-      <code className={"py-[1px] px-[4px] rounded-md bg-slate-100 text-[14px] text-stale-600"} {...props} />
-    );
-  },
+  code,
 };
 
 export function RenderMDX({ code }: Props) {
