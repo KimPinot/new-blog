@@ -21,12 +21,14 @@ interface IComponents extends Omit<Partial<ComponentMap>, "pre" | "code"> {
 }
 
 const components: IComponents = {
-  h1: ({ children }) => <h1 className="markdown-h1 mt-4 text-3xl font-bold">{children}</h1>,
-  h2: ({ children }) => <h1 className="markdown-h2 mt-4 text-2xl font-bold">{children}</h1>,
-  h3: ({ children }) => <h1 className="markdown-h3 mt-4 text-xl font-bold">{children}</h1>,
-  h4: ({ children }) => <h1 className="markdown-h4 mt-4 text-lg font-bold">{children}</h1>,
+  h1: ({ children }) => <h1 className="markdown-h1 mt-4 text-2xl font-bold">{children}</h1>,
+  h2: ({ children }) => <h1 className="markdown-h2 mt-4 text-xl font-bold">{children}</h1>,
+  h3: ({ children }) => <h1 className="markdown-h3 mt-4 text-lg font-bold">{children}</h1>,
+  h4: ({ children }) => <h1 className="markdown-h4 mt-4 text-base font-bold">{children}</h1>,
   p: ({ children }) => <p className="markdown-p leading-1">{children}</p>,
   ul: ({ children }) => <ul className="markdown-ul list-disc pl-5">{children}</ul>,
+  ol: ({ children }) => <ul className="markdown-ul list-decimal pl-5">{children}</ul>,
+  table: ({ children }) => <table className="table">{children}</table>,
   // eslint-disable-next-line @next/next/no-img-element
   img: ({ src, alt, ...props }) => <img className="card" src={src} alt={alt} {...props} />,
   a: (props) => <a {...props} className="link link-hover link-primary underline-offset-4" />,
