@@ -15,7 +15,7 @@ type Props = {
 
 const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
   return (
-    <>
+    <main id={filename}>
       <Head>
         <title>{`nabi.kim | ${meta.title}`}</title>
         <meta property="og:title" content={`nabi.kim | ${meta.title}`} />
@@ -35,7 +35,7 @@ const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
           <RenderMDX code={code} />
         </div>
       </article>
-    </>
+    </main>
   );
 };
 
