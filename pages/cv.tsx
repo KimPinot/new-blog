@@ -60,17 +60,27 @@ const CV: NextPage = () => {
         </P>
         <LessToggle />
       </CVSection>
+      <b>해당 문서는 아직 작성중입니다!</b>
       <CVSection>
         <SectionTitle>Work Experience</SectionTitle>
         <Ul className="flex flex-col gap-3">
           <Li>
             <Work period="2022. 01" title="에스씨브이소프트" role="소프트웨어 엔지니어" />
+            <Collapse collapse={less}>
+              <P>TBD</P>
+            </Collapse>
           </Li>
           <Li>
             <Work period="2021. 12 ~" title="유엑스닷" role="기술 총괄 디렉터" />
+            <Collapse collapse={less}>
+              <P>TBD</P>
+            </Collapse>
           </Li>
           <Li>
             <Work period="2021. 06 ~ 2022. 12" title="피터스앤마이어스" role="소프트웨어 엔지니어 (프리랜서)" />
+            <Collapse collapse={less}>
+              <P>TBD</P>
+            </Collapse>
           </Li>
           <Li>
             <Work
@@ -79,6 +89,9 @@ const CV: NextPage = () => {
               role="프론트엔드 개발자 (프리랜서)"
               link="//www.b4play.io"
             />
+            <Collapse collapse={less}>
+              <P>TBD</P>
+            </Collapse>
           </Li>
         </Ul>
       </CVSection>
@@ -87,6 +100,9 @@ const CV: NextPage = () => {
         <Ul className="flex flex-col gap-3">
           <Li>
             <Work period="2019. 03 ~ 2022. 02" title="군포e비즈니스고등학교" role="스마트소프트웨어학과" />
+            <Collapse collapse={less}>
+              <P>TBD</P>
+            </Collapse>
           </Li>
         </Ul>
       </CVSection>
@@ -96,7 +112,7 @@ const CV: NextPage = () => {
           <Li>
             <Work period="2020. 10" title="건국대학교 애니멀 헬스 해커톤" role="프론트엔드 엔지니어, 팀장" />
             <Collapse collapse={less}>
-              <P>집에 가고싶다</P>
+              <P>TBD</P>
             </Collapse>
             <Ul>
               <Li>
@@ -106,6 +122,9 @@ const CV: NextPage = () => {
           </Li>
           <Li>
             <Work period="2020. 07" title="AngelHack Seoul 2020 ONLINE" role="프론트엔드 엔지니어, 팀장" />
+            <Collapse collapse={less}>
+              <P>TBD</P>
+            </Collapse>
             <Ul>
               <Li>
                 <i className="text-gray-400">
@@ -116,6 +135,9 @@ const CV: NextPage = () => {
           </Li>
           <Li>
             <Work period="2020. 04" title="IBM Call For Code" role="프론트엔드 엔지니어, 팀장" />
+            <Collapse collapse={less}>
+              <P>TBD</P>
+            </Collapse>
             <Ul>
               <Li>
                 <i className="text-gray-400">
@@ -126,6 +148,9 @@ const CV: NextPage = () => {
           </Li>
           <Li>
             <Work period="2019. 11" title="2019 블록체인 아이디어톤" role="프론트엔드 엔지니어" />
+            <Collapse collapse={less}>
+              <P>TBD</P>
+            </Collapse>
             <Ul>
               <Li>
                 <i className="text-gray-400">우수상 · 팀 “모두의 리콜” · 한국인터넷진흥원</i>
@@ -134,6 +159,9 @@ const CV: NextPage = () => {
           </Li>
           <Li>
             <Work period="2019. 10" title="2019 서울 인공지능 챗봇톤" role="프론트엔드 엔지니어, 팀장" />
+            <Collapse collapse={less}>
+              <P>TBD</P>
+            </Collapse>
             <Ul>
               <Li>
                 <i className="text-gray-400">장려상 · 팀 “서아키” · 서울디지털재단</i>
@@ -152,9 +180,19 @@ const CV: NextPage = () => {
               role=""
               link="//nabi.kim/categories/만들기/Socket-io로-채팅-서비스-만들어보기/"
             />
+            <Collapse collapse={less}>
+              <Ul className="flex flex-col gap-2">
+                <Li>TBD</Li>
+              </Ul>
+            </Collapse>
           </Li>
           <Li>
             <Work period="2021. 12 ~" title="개인 기술 블로그" role="" link="//nabi.kim" />
+            <Collapse collapse={less}>
+              <Ul className="flex flex-col gap-2">
+                <Li>TBD</Li>
+              </Ul>
+            </Collapse>
           </Li>
           <Li>
             <Work
@@ -163,6 +201,11 @@ const CV: NextPage = () => {
               role="풀스택 개발자"
               link="//2021exhibition.online"
             />
+            <Collapse collapse={less}>
+              <Ul className="flex flex-col gap-2">
+                <Li>TBD</Li>
+              </Ul>
+            </Collapse>
           </Li>
           <Li>
             <Work
@@ -171,6 +214,11 @@ const CV: NextPage = () => {
               role="프론트엔드 개발자 (프리랜서)"
               link="//sungyun.kr"
             />
+            <Collapse collapse={less}>
+              <Ul className="flex flex-col gap-2">
+                <Li>TBD</Li>
+              </Ul>
+            </Collapse>
           </Li>
           <Li>
             <Work
@@ -179,6 +227,11 @@ const CV: NextPage = () => {
               role=""
               link="//github.com/KimPinot/APPERZ-MAIN"
             />
+            <Collapse collapse={less}>
+              <Ul className="flex flex-col gap-2">
+                <Li>TBD</Li>
+              </Ul>
+            </Collapse>
           </Li>
         </Ul>
       </CVSection>
@@ -187,12 +240,30 @@ const CV: NextPage = () => {
         <Ul className="flex flex-col gap-3">
           <Li>
             <Work period="2022. 08" title="JUNCTION ASIA 2022" role="자원봉사자" link="//asia.hackjunction.com/ko" />
+            <Collapse collapse={less}>
+              <Ul className="flex flex-col gap-2">
+                <Li>TBD</Li>
+              </Ul>
+            </Collapse>
           </Li>
           <Li>
             <Work period="2022. 07" title="2022 고려대학교 X 연세대학교 합동 해커톤" role="멘토, 프론트엔드" />
+            <Collapse collapse={less}>
+              <Ul className="flex flex-col gap-2">
+                <Li>해커톤에 참여한 학생들에게 프론트엔드 개발과 서비스 기획에 대한 멘토링을 진행했습니다.</Li>
+              </Ul>
+            </Collapse>
           </Li>
           <Li>
             <Work period="2022. 07" title="2022 서울 퀴어문화축제" role="자원봉사자, 굿즈팀" link="//www.sqcf.org/" />
+            <Collapse collapse={less}>
+              <Ul className="flex flex-col gap-2">
+                <Li>굿즈팀 자원봉사자로 참여하여 수만명이 넘는 인파를 통제하거나, 굿즈를 홍보했습니다.</Li>
+                <Li>
+                  자원봉사자로 일하며 많은 사람들 앞에서 자신의 상품을 판매하거나 사람들을 통제하는 노하우를 얻었습니다.
+                </Li>
+              </Ul>
+            </Collapse>
           </Li>
         </Ul>
       </CVSection>
