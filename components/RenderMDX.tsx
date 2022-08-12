@@ -28,7 +28,11 @@ const components: IComponents = {
   p: ({ children }) => <p className="markdown-p leading-1">{children}</p>,
   ul: ({ children }) => <ul className="markdown-ul list-disc pl-5">{children}</ul>,
   ol: ({ children }) => <ul className="markdown-ul list-decimal pl-5">{children}</ul>,
-  table: ({ children }) => <table className="table">{children}</table>,
+  table: ({ children }) => (
+    <div className="overflow-x-auto">
+      <table className="table markdown-table">{children}</table>
+    </div>
+  ),
   // eslint-disable-next-line @next/next/no-img-element
   img: ({ src, alt, ...props }) => <img className="card" src={src} alt={alt} {...props} />,
   a: (props) => <a {...props} className="link link-hover link-primary underline-offset-4" />,
