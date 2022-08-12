@@ -2,6 +2,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import theme from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light";
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client";
 import { ComponentProps, HTMLProps, useMemo } from "react";
+import { H1 as h1, H2 as h2, H3 as h3, H4 as h4, P as p } from "./markdown/typography";
 
 type Props = {
   code: string;
@@ -21,11 +22,11 @@ interface IComponents extends Omit<Partial<ComponentMap>, "pre" | "code"> {
 }
 
 const components: IComponents = {
-  h1: ({ children }) => <h1 className="markdown-h1 mt-4 text-2xl font-bold">{children}</h1>,
-  h2: ({ children }) => <h2 className="markdown-h2 mt-4 text-xl font-bold">{children}</h2>,
-  h3: ({ children }) => <h3 className="markdown-h3 mt-4 text-lg font-bold">{children}</h3>,
-  h4: ({ children }) => <h4 className="markdown-h4 mt-4 text-base font-bold">{children}</h4>,
-  p: ({ children }) => <p className="markdown-p leading-1">{children}</p>,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
   ul: ({ children }) => <ul className="markdown-ul list-disc pl-5">{children}</ul>,
   ol: ({ children }) => <ul className="markdown-ul list-decimal pl-5">{children}</ul>,
   table: ({ children }) => (
