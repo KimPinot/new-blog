@@ -9,16 +9,23 @@ const SectionTitle = ({ children }: HTMLProps<typeof H1>) => (
   <H1 className="tracking-widest uppercase text-gray-600 font-light">{children}</H1>
 );
 
+const A = ({ children, href }: HTMLProps<HTMLAnchorElement>) => {
+  return (
+    <a
+      className="underline underline-offset-4 decoration-1 hover:text-primary transition-[color]"
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {children}
+    </a>
+  );
+};
+
 const Work = ({ period = "", title = "", role = "", link = "" }) => (
   <p className="text-gray-900 font-semibold">
     <Code className="font-normal">{period}</Code>{" "}
-    {link ? (
-      <a className="underline underline-offset-4" href={link} target="_blank" rel="noreferrer">
-        {title}
-      </a>
-    ) : (
-      <b className="font-semibold">{title}</b>
-    )}{" "}
+    {link ? <A href={link}>{title}</A> : <b className="font-semibold">{title}</b>}{" "}
     <i className="text-base text-gray-400 font-normal">{role}</i>
   </p>
 );
@@ -65,21 +72,34 @@ const CV: NextPage = () => {
         <SectionTitle>Work Experience</SectionTitle>
         <Ul className="flex flex-col gap-3">
           <Li>
-            <Work period="2022. 01" title="에스씨브이소프트" role="소프트웨어 엔지니어" />
+            <Work period="2022. 01" title="에스씨브이소프트" role="소프트웨어 엔지니어" link="//scvsoft.net/" />
             <Collapse collapse={less}>
-              <P>TBD</P>
+              <P className="text-sm">
+                블록체인으로 세상을 바꾸는 에스씨브이소프트에서 소프트웨어 엔지니어로 근무하고 있습니다.
+                <br />
+                다양한 업계의 회사와 협업하고 있으며, NextJS를 사용한 프론트엔드 업무, AWS를 사용한 간단한 DevOps 업무를
+                병행하고 있습니다.
+                <br />
+                최근에는 테크리드로써 사내 개발 문화 개선을 위하여 코드리뷰 도입 등 다양한 방법을 시도하고 있습니다.
+              </P>
             </Collapse>
           </Li>
           <Li>
-            <Work period="2021. 12 ~" title="유엑스닷" role="기술 총괄 디렉터" />
+            <Work period="2021. 12 ~" title="유엑스닷" role="외부 기술 총괄 디렉터" />
             <Collapse collapse={less}>
-              <P>TBD</P>
+              <P className="text-sm">
+                경험 디자인 스튜디오 유엑스닷에서 외부 기술 총괄 디렉터로 소속되어 있습니다.
+                <br />
+                부산을 기반으로 하는 다양한 클라이언트들과 협업하고 있으며, 개발자가 소수인 디자인 스튜디오의 특성상
+                <br />
+                최소한의 커뮤니케이션으로 최대한의 효과를 얻어낼 수 있는 방법을 항상 고민하고 있습니다.
+              </P>
             </Collapse>
           </Li>
           <Li>
             <Work period="2021. 06 ~ 2022. 12" title="피터스앤마이어스" role="소프트웨어 엔지니어 (프리랜서)" />
             <Collapse collapse={less}>
-              <P>TBD</P>
+              <P className="text-sm">TBD</P>
             </Collapse>
           </Li>
           <Li>
@@ -99,9 +119,16 @@ const CV: NextPage = () => {
         <SectionTitle>EDUCATION</SectionTitle>
         <Ul className="flex flex-col gap-3">
           <Li>
-            <Work period="2019. 03 ~ 2022. 02" title="군포e비즈니스고등학교" role="스마트소프트웨어학과" />
+            <Work period="2019. 03 ~ 2022. 02" title="군포e비즈니스고등학교" role="스마트소프트웨어학과 (졸업)" />
             <Collapse collapse={less}>
-              <P>TBD</P>
+              <P className="text-sm">
+                IT 계열 특성화 고등학교인 군포e비즈니스고등학교에서 컴퓨터과학과 관련된 기초적인 지식을 배웠습니다.
+                <br />
+                전공수업에서는 안드로이드 스튜디오, 유니티, MySQL, Python을 사용한 데이터 정렬, HTML/CSS와 같이 실무에서
+                자주 사용하는 기술들을 배웠습니다.
+                <br />
+                2학년부터는 학교와 업무를 같이 병행하며 서비스를 만들거나 다양한 회사와 협업을 해본 경험이 있습니다.
+              </P>
             </Collapse>
           </Li>
         </Ul>
