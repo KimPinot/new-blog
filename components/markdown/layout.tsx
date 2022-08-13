@@ -1,5 +1,5 @@
 import { HTMLProps } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import cc from "classcat";
 
 type Props = HTMLProps<HTMLDivElement>;
@@ -16,10 +16,10 @@ type CollapseProps = Props & {
   collapse: boolean;
 };
 
-export function Collapse({ children, collapse }: CollapseProps) {
+export function Collapse({ children, className, collapse }: CollapseProps) {
   const height = {
     hidden: {
-      marginTop: -8,
+      marginTop: "-0.25rem",
       height: 0,
       opacity: 0,
     },
@@ -31,7 +31,7 @@ export function Collapse({ children, collapse }: CollapseProps) {
   };
   return (
     <motion.div initial={false} animate={collapse ? "show" : "hidden"} variants={height}>
-      {children}
+      <div className={className}>{children}</div>
     </motion.div>
   );
 }
