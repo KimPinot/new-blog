@@ -37,6 +37,23 @@ const sortByDate = F.pipe(
 );
 const keepNotListHidden = (i: Metadata) => !i.hide?.list;
 
+const groupBy = (aaaaa: Map<string, Metadata[]>) => (i: Metadata[]) =>
+  F.pipe(
+    i,
+    A.map((article) => {
+      const category = article.categories?.[0] || "No Category";
+      const a = aaaaa.get(category) || [];
+      aaaaa.set(category, [...a, article]);
+    }),
+    () => aaaaa,
+    Object.fromEntries,
+    Object.keys,
+    A.sort(F.pipe(S.Ord)),
+    (map) => new Map(map.map((i) => [i, aaaaa.get(i)])),
+    Object.fromEntries,
+  );
+
 export const getPostsStaticParams = async () => F.pipe(await getFilenames(), dirToStaticPath);
 export const getPosts = async () => F.pipe(await getFilenames(), A.map(getMetadata), promiseAll);
 export const getSortedPosts = async () => F.pipe(await getPosts(), A.filter(keepNotListHidden), A.sort(sortByDate));
+export const getCategories = async () => F.pipe(await getSortedPosts(), groupBy(new Map()));
