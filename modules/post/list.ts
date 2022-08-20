@@ -35,7 +35,7 @@ const sortByDate = F.pipe(
   O.contramap((i: Metadata) => i.date),
   O.reverse,
 );
-const keepNotListHidden = (i: Metadata) => !i.hide?.list;
+const keepNotListHidden = (i: Metadata) => i?.list !== false;
 
 const groupBy = (aaaaa: Map<string, Metadata[]>) => (i: Metadata[]) =>
   F.pipe(
