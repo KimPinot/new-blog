@@ -24,7 +24,7 @@
     "i18next-http-backend": "^1.4.1",
     "junk": "^4.0.0",
     "mdx-bundler": "^9.0.1",
-    "next": "^12.2.4",
+    "next": "^12.2.5",
     "next-superjson-plugin": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
