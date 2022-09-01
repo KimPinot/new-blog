@@ -25,3 +25,7 @@ ul ul ul ul ul {
 ul ul ul ul ul ul {
   list-style: disc !important;
 }
+
+.utterances {
+  max-width: unset;
+}

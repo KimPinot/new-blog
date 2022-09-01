@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getContent, getMetadata } from "modules/post/article";
 import { RenderMDX } from "components/RenderMDX";
 import { ArticleLayout } from "components/layout/ArticleLayout";
+import { Comments } from "components/commnets";
 
 type Props = {
   filename: string;
@@ -12,15 +13,18 @@ type Props = {
 
 const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
   return (
-    <ArticleLayout
-      id={filename}
-      title={meta.title}
-      description={meta.description}
-      date={meta.date}
-      layout={meta.layout}
-    >
-      <RenderMDX code={code} />
-    </ArticleLayout>
+    <>
+      <ArticleLayout
+        id={filename}
+        title={meta.title}
+        description={meta.description}
+        date={meta.date}
+        layout={meta.layout}
+      >
+        <RenderMDX code={code} />
+        <Comments />
+      </ArticleLayout>
+    </>
   );
 };
 
