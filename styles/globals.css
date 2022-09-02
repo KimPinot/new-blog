@@ -29,3 +29,20 @@ ul ul ul ul ul ul {
 .utterances {
   max-width: unset;
 }
+
+.emoji {
+  display: inline-block;
+  height: 1.1rem;
+}
+
+h1 .emoji {
+  height: 1.5rem;
+}
+
+h2 .emoji {
+  height: 1.25rem;
+}
+
+h3 .emoji {
+  height: 1.125rem;
+}

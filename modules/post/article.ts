@@ -9,6 +9,10 @@ import matter from "gray-matter";
 import remarkGithub from "remark-github";
 import remarkGemoji from "remark-gemoji";
 import remarkBreaks from "remark-breaks";
+import { nodeTypes } from "@mdx-js/mdx";
+// @ts-ignore
+import remarkTweetmoji from "remark-plugin-twemoji";
+import rehypeRaw from "rehype-raw";
 
 export type Metadata = {
   title: string;
@@ -52,8 +56,15 @@ export const render = (markdown: string): Promise<RenderReturns> =>
           },
         ],
         remarkGemoji,
+        [
+          remarkTweetmoji,
+          {
+            isReact: true,
+          },
+        ],
         remarkBreaks,
       ],
+      rehypePlugins: [[rehypeRaw, { passThrough: nodeTypes }]],
     }),
   });
 
