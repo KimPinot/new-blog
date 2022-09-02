@@ -12,7 +12,13 @@ type Props = {
 
 const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
   return (
-    <ArticleLayout id={filename} title={meta.title} description={meta.description} date={meta.date}>
+    <ArticleLayout
+      id={filename}
+      title={meta.title}
+      description={meta.description}
+      date={meta.date}
+      layout={meta.layout}
+    >
       <RenderMDX code={code} />
     </ArticleLayout>
   );

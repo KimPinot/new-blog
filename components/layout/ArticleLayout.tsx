@@ -1,3 +1,4 @@
+import classcat from "classcat";
 import { format } from "date-fns";
 import { dateWithoutTimezone } from "modules/utils/date";
 import Head from "next/head";
@@ -9,10 +10,11 @@ interface Props extends HTMLProps<HTMLDivElement> {
   description: string;
   thumbnail?: string;
   date: number;
+  layout?: string;
   children: ReactNode;
 }
 
-export function ArticleLayout({ title, description, thumbnail, date, children, ...props }: Props) {
+export function ArticleLayout({ title, description, thumbnail, date, children, layout, ...props }: Props) {
   return (
     <main {...props}>
       <Head>
@@ -29,7 +31,7 @@ export function ArticleLayout({ title, description, thumbnail, date, children, .
           </h3>
         </div>
       </header>
-      <article className="makrdown-content">
+      <article className={classcat(["makrdown-content", layout && `layout-${layout}`])}>
         <div className="page-content pt-0 pb-36 flex flex-col gap-2">{children}</div>
       </article>
     </main>
