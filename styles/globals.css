@@ -33,6 +33,7 @@ ul ul ul ul ul ul {
 .emoji {
   display: inline-block;
   height: 1.1rem;
+  vertical-align: -3px;
 }
 
 h1 .emoji {
