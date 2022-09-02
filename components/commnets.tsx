@@ -1,7 +1,7 @@
 export function Comments() {
   return (
     <section
-      className="w-full mt-8"
+      className="w-full mt-8 print:hidden"
       ref={(element) => {
         if (!element) return;
         const script = document.createElement("script");

@@ -37,7 +37,12 @@ const components: IComponents = {
   ),
   // eslint-disable-next-line @next/next/no-img-element
   img: ({ src, alt, ...props }) => <img className="card" src={src} alt={alt} {...props} />,
-  a: (props) => <a {...props} className="link link-hover link-primary underline-offset-4" />,
+  a: ({ href, children, ...props }) => (
+    <a {...props} href={href} className="link link-hover link-primary underline-offset-4">
+      {children}
+      <span className="hidden print:block">({href})</span>
+    </a>
+  ),
   input: ({ type, ...props }) => {
     switch (type) {
       case "checkbox":
