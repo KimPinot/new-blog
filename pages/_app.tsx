@@ -1,5 +1,5 @@
-import "styles/taiwindcss.css";
 import "styles/globals.css";
+import "styles/taiwindcss.scss";
 import type { AppProps } from "next/app";
 import AlertContextProvider from "contexts/AlertContext";
 import { Header } from "components/Header";

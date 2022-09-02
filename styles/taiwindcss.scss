@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  blockquote {
+    @apply border-l-4 border-l-slate-200 bg-slate-50 p-3;
+  }
+
+  code,
+  code span {
+    -webkit-font-smoothing: auto;
+    font-feature-settings: "liga" on, "calt" on;
+    text-rendering: optimizeLegibility;
+    font-weight: 500;
+    font-family: "JetBrains Mono", sans-serif;
+  }
+
+  .markdown-table th:first-child {
+    position: relative !important;
+  }
+
+  .markdown-h1:first-child,
+  .markdown-h2:first-child,
+  .markdown-h3:first-child,
+  .markdown-h4:first-child {
+    margin-top: unset !important;
+  }
+
+  .layout-cv {
+    .page-content {
+      @apply gap-0;
+
+      b, strong {
+        @apply font-semibold;
+      }
+    }
+
+    .markdown-h1,
+    .markdown-h2,
+    .markdown-h3 {
+      @apply font-semibold;
+
+      em {
+        @apply text-sm font-semibold text-slate-600;
+      }
+    }
+
+    // main section
+    .markdown-h1 {
+      @apply mt-6 mb-0;
+    }
+
+    // sub-section
+    .markdown-h2 {
+      @apply mt-3 mb-0;
+    }
+
+    // content-section
+    .markdown-h3 {
+      @apply mt-1 mb-0;
+    }
+
+    .markdown-ul {
+      @apply text-sm;
+
+      li {
+        @apply pt-1;
+      }
+
+      .winning-content {
+        @apply text-slate-600;
+      }
+    }
+  }
+}
+
+@layer components {
+  .keep-all {
+    word-break: keep-all;
+  }
+
+  .page-content {
+    @apply container max-w-5xl mx-auto py-4 px-5 keep-all;
+  }
+}

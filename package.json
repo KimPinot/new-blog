@@ -35,6 +35,7 @@
     "remark-gfm": "^3.0.1",
     "remark-github": "^11.2.4",
     "remark-mdx-code-meta": "^2.0.0",
+    "sass": "^1.54.5",
     "superjson": "^1.9.1"
   },
   "devDependencies": {
