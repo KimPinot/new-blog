@@ -10,9 +10,17 @@ import remarkGithub from "remark-github";
 import remarkGemoji from "remark-gemoji";
 import remarkBreaks from "remark-breaks";
 import { nodeTypes } from "@mdx-js/mdx";
+import rehypeRaw from "rehype-raw";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
+import remarkMermaid from "remark-mermaidjs";
+import rehypeHighlight from "rehype-highlight";
 // @ts-ignore
 import remarkTweetmoji from "remark-plugin-twemoji";
-import rehypeRaw from "rehype-raw";
+// @ts-ignore
+import rehypeAddClasses from "rehype-add-classes";
 
 export type Metadata = {
   title: string;
@@ -82,3 +90,52 @@ export async function getMetadata(filename: string): Promise<MetaDataWithFilenam
     date: +date,
   };
 }
+
+export const _unified = (markdown: string) =>
+  unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkGithub, {
+      repository: "KimPinot/new-blog",
+    })
+    .use(remarkGemoji)
+    .use(remarkTweetmoji)
+    .use(remarkBreaks)
+    .use(remarkMermaid, {
+      launchOptions: {},
+    })
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .use(rehypeHighlight, { subset: false })
+    .use(rehypeAddClasses, {
+      h1: "text-2xl",
+      h2: "text-xl",
+      h3: "text-lg",
+      h4: "text-base",
+      "h1, h2, h3, h4": "font-bold mt-4",
+      "code:not(.hljs)": "py-[1px] px-[4px] rounded-md bg-slate-100 text-[14px] text-stale-600",
+      "input[type=checkbox]": "inline-block checkbox checkbox-sm -mb-1",
+      a: "link link-hover link-primary underline-offset-4",
+      "ul, ol": "pl-5",
+      ul: "list-disc",
+      ol: "list-decimal",
+      img: "card",
+      table: "table overflow-x-auto w-full",
+      p: "leading-2",
+    })
+    .process(markdown);
+
+export const readPost = async (filename: string) => {
+  let file: string;
+  try {
+    file = await readFile("./posts")(filename)("mdx");
+  } catch (e) {
+    file = await readFile("./posts")(filename)("md");
+  }
+  const { content: _content, data: metadata } = matter(file);
+  const __html = await _unified(_content);
+  return {
+    metadata,
+    __html: String(__html),
+  };
+};

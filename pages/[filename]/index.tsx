@@ -1,27 +1,26 @@
 import { getPostsStaticParams } from "modules/post/list";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { getContent, getMetadata } from "modules/post/article";
-import { RenderMDX } from "components/RenderMDX";
+import { readPost } from "modules/post/article";
 import { ArticleLayout } from "components/layout/ArticleLayout";
 import { Comments } from "components/commnets";
 
 type Props = {
   filename: string;
-  meta: Record<string, any>;
-  code: string;
+  __html: string;
+  metadata: Record<string, never>;
 };
 
-const ArticleDetail: NextPage<Props> = ({ filename, meta, code }) => {
+const ArticleDetail: NextPage<Props> = ({ filename, metadata, __html }) => {
   return (
     <>
       <ArticleLayout
         id={filename}
-        title={meta.title}
-        description={meta.description}
-        date={meta.date}
-        layout={meta.layout}
+        title={metadata.title}
+        description={metadata.description}
+        date={metadata.date}
+        layout={metadata.layout}
       >
-        <RenderMDX code={code} />
+        <div dangerouslySetInnerHTML={{ __html }} />
         <Comments />
       </ArticleLayout>
     </>
@@ -37,12 +36,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const filename = params?.filename as string;
+  const post = await readPost(filename);
 
   return {
     props: {
       filename,
-      code: await getContent(filename),
-      meta: await getMetadata(filename),
+      ...post,
     },
   };
 };

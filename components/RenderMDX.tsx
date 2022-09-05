@@ -1,26 +1,17 @@
 import SyntaxHighlighter, { SyntaxHighlighterProps } from "react-syntax-highlighter";
 import theme from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light";
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client";
-import { ComponentProps, HTMLProps, useMemo } from "react";
+import { FC, useMemo } from "react";
 
 type Props = {
   code: string;
 };
 
-interface MarkedPre extends HTMLProps<HTMLPreElement> {
-  filename: string;
-}
+type ComponentsType = {
+  [key: string]: FC<any>;
+};
 
-interface MarkedCode extends ComponentProps<typeof SyntaxHighlighter> {
-  class: string;
-}
-
-interface IComponents extends Omit<Partial<ComponentMap>, "pre" | "code"> {
-  pre: (props: MarkedPre) => JSX.Element;
-  code: (props: MarkedCode) => JSX.Element;
-}
-
-const components: IComponents = {
+export const components: ComponentsType = {
   h1: (props) => <h1 className={"markdown-h1 mt-4 text-2xl font-bold"} {...props} />,
   h2: (props) => <h1 className={"markdown-h2 mt-4 text-xl font-bold"} {...props} />,
   h3: (props) => <h1 className={"markdown-h3 mt-4 text-lg font-bold"} {...props} />,
@@ -65,10 +56,7 @@ const components: IComponents = {
         {...props}
       />
     ) : (
-      <code
-        className={"py-[1px] px-[4px] rounded-md bg-slate-100 text-[14px] text-stale-600"}
-        {...props}
-      />
+      <code className={"py-[1px] px-[4px] rounded-md bg-slate-100 text-[14px] text-stale-600"} {...props} />
     );
   },
 };

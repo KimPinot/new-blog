@@ -1,5 +1,6 @@
 import "styles/globals.css";
 import "styles/taiwindcss.scss";
+import "highlight.js/scss/atom-one-light.scss";
 import type { AppProps } from "next/app";
 import AlertContextProvider from "contexts/AlertContext";
 import { Header } from "components/Header";
