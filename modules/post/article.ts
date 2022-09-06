@@ -3,7 +3,6 @@ import fs from "fs/promises";
 import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import { joinObject, pick } from "modules/utils/object";
-import remarkMdxCodeMeta from "remark-mdx-code-meta";
 import remarkGfm from "remark-gfm";
 import matter from "gray-matter";
 import remarkGithub from "remark-github";
@@ -17,8 +16,6 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import remarkMermaid from "remark-mermaidjs";
 import rehypeHighlight from "rehype-highlight";
-// @ts-ignore
-import remarkTweetmoji from "remark-plugin-twemoji";
 import remarkMdx from "remark-mdx";
 // @ts-ignore
 import rehypeAddClasses from "rehype-add-classes";
@@ -57,7 +54,6 @@ export const render = (markdown: string): Promise<RenderReturns> =>
     mdxOptions: (options) => ({
       ...options,
       remarkPlugins: [
-        remarkMdxCodeMeta,
         remarkGfm,
         [
           remarkGithub,
@@ -66,12 +62,6 @@ export const render = (markdown: string): Promise<RenderReturns> =>
           },
         ],
         remarkGemoji,
-        [
-          remarkTweetmoji,
-          {
-            isReact: true,
-          },
-        ],
         remarkBreaks,
       ],
       rehypePlugins: [[rehypeRaw, { passThrough: nodeTypes }]],
@@ -102,7 +92,6 @@ export const _unified = (markdown: string) =>
       repository: "KimPinot/new-blog",
     })
     .use(remarkGemoji)
-    .use(remarkTweetmoji)
     .use(remarkBreaks)
     .use(remarkMermaid, {
       launchOptions: {},
