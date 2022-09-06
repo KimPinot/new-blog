@@ -16,15 +16,29 @@
     font-family: "JetBrains Mono", sans-serif;
   }
 
-  .markdown-table th:first-child {
+  table th:first-child {
     position: relative !important;
   }
 
-  .markdown-h1:first-child,
-  .markdown-h2:first-child,
-  .markdown-h3:first-child,
-  .markdown-h4:first-child {
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child {
     margin-top: unset !important;
+  }
+}
+
+@layer components {
+  .keep-all {
+    word-break: keep-all;
+  }
+
+  .page-content {
+    @apply container max-w-5xl mx-auto py-4 px-5 keep-all;
+
+    p {
+      line-height: 1.5;
+    }
   }
 
   .layout-cv {
@@ -39,7 +53,7 @@
     .markdown-h1,
     .markdown-h2,
     .markdown-h3 {
-      @apply font-semibold;
+      @apply font-semibold mb-1;
 
       em {
         @apply text-sm font-semibold text-slate-600;
@@ -72,15 +86,5 @@
         @apply text-slate-600;
       }
     }
-  }
-}
-
-@layer components {
-  .keep-all {
-    word-break: keep-all;
-  }
-
-  .page-content {
-    @apply container max-w-5xl mx-auto py-4 px-5 keep-all;
   }
 }

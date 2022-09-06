@@ -1,5 +1,3 @@
-import { Ul } from "components/markdown/list";
-import { H1, H2 } from "components/markdown/typography";
 import { MetaDataWithFilename } from "modules/post/article";
 import { getCategories } from "modules/post/list";
 import { NextPage } from "next";
@@ -15,14 +13,14 @@ const Categories: NextPage<Props> = ({ categories }) => {
   return (
     <main className="page-content">
       <header>
-        <H1>Categories</H1>
+        <h1 className="text-2xl font-bold">Categories</h1>
       </header>
       <article>
-        <Ul>
+        <ul className="pl-5 list-disc">
           {Object.keys(categories).map((category) => (
-            <li key={category}>
-              <H2>{category}</H2>
-              <Ul>
+            <li className="mt-2" key={category}>
+              <h2 className="text-xl font-bold">{category}</h2>
+              <ul className="pl-5">
                 {categories[category].map((article) => (
                   <li key={article.filename}>
                     <Link href={`/${article.filename}`}>
@@ -30,10 +28,10 @@ const Categories: NextPage<Props> = ({ categories }) => {
                     </Link>
                   </li>
                 ))}
-              </Ul>
+              </ul>
             </li>
           ))}
-        </Ul>
+        </ul>
       </article>
     </main>
   );
