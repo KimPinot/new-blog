@@ -11,20 +11,10 @@ interface Props extends HTMLProps<HTMLDivElement> {
   thumbnail?: string;
   date: number;
   layout?: string;
-  disableLayout?: boolean;
   children: ReactNode;
 }
 
-export function ArticleLayout({
-  title,
-  description,
-  thumbnail,
-  date,
-  children,
-  layout,
-  disableLayout,
-  ...props
-}: Props) {
+export function ArticleLayout({ title, description, thumbnail, date, children, layout, ...props }: Props) {
   return (
     <main {...props}>
       <Head>
@@ -42,7 +32,7 @@ export function ArticleLayout({
         </div>
       </header>
       <article className={classcat(["makrdown-content", layout && `layout-${layout}`])}>
-        {disableLayout ? children : <div className="page-content pt-0 pb-36 flex flex-col gap-2">{children}</div>}
+        <div className="page-content pt-0 pb-36">{children}</div>
       </article>
     </main>
   );

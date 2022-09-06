@@ -19,9 +19,8 @@ const ArticleDetail: NextPage<Props> = ({ filename, metadata, __html }) => {
         description={metadata.description}
         date={metadata.date}
         layout={metadata.layout}
-        disableLayout
       >
-        <div className="page-content pt-0 pb-36 flex flex-col gap-2" dangerouslySetInnerHTML={{ __html }} />
+        <div className="flex flex-col gap-2" dangerouslySetInnerHTML={{ __html }} />
         <Comments />
       </ArticleLayout>
     </>
