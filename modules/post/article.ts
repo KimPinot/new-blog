@@ -21,6 +21,7 @@ import rehypeHighlight from "rehype-highlight";
 import remarkTweetmoji from "remark-plugin-twemoji";
 // @ts-ignore
 import rehypeAddClasses from "rehype-add-classes";
+const rehypeWrap = require("rehype-wrap");
 
 export type Metadata = {
   title: string;
@@ -120,9 +121,9 @@ export const _unified = (markdown: string) =>
       ul: "list-disc",
       ol: "list-decimal",
       img: "card",
-      table: "table overflow-x-auto w-full",
-      p: "leading-2",
+      table: "table",
     })
+    .use(rehypeWrap, { selector: "table", wrapper: "div.overflow-x-auto.w-full" })
     .process(markdown);
 
 export const readPost = async (filename: string) => {
