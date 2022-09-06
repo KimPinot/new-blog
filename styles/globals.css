@@ -47,3 +47,7 @@ h2 .emoji {
 h3 .emoji {
   height: 1.125rem;
 }
+
+.hljs {
+  padding: 1rem !important;
+}
