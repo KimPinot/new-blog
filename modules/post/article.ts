@@ -114,7 +114,7 @@ export const _unified = (markdown: string) =>
       img: "card",
       table: "table",
     })
-    .use(rehypeWrap, { selector: "table", wrapper: "div.overflow-x-auto.w-full" })
+    .use(rehypeWrap, { selector: "table", wrapper: "div.overflow-x-auto.w-full", fallback: false })
     .process(markdown);
 
 export const readPost = async (filename: string) => {
