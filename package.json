@@ -34,6 +34,7 @@
     "rehype-highlight": "^5.0.2",
     "rehype-raw": "^6.1.1",
     "rehype-stringify": "^9.0.3",
+    "rehype-wrap": "^1.1.0",
     "remark-breaks": "^3.0.2",
     "remark-gemoji": "^7.0.1",
     "remark-gfm": "^3.0.1",
