@@ -19,6 +19,7 @@ import remarkMermaid from "remark-mermaidjs";
 import rehypeHighlight from "rehype-highlight";
 // @ts-ignore
 import remarkTweetmoji from "remark-plugin-twemoji";
+import remarkMdx from "remark-mdx";
 // @ts-ignore
 import rehypeAddClasses from "rehype-add-classes";
 const rehypeWrap = require("rehype-wrap");
@@ -95,6 +96,7 @@ export async function getMetadata(filename: string): Promise<MetaDataWithFilenam
 export const _unified = (markdown: string) =>
   unified()
     .use(remarkParse)
+    .use(remarkMdx)
     .use(remarkGfm)
     .use(remarkGithub, {
       repository: "KimPinot/new-blog",
