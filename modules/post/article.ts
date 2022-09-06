@@ -100,19 +100,19 @@ export const _unified = (markdown: string) =>
     .use(rehypeStringify)
     .use(rehypeHighlight, { subset: false })
     .use(rehypeAddClasses, {
-      h1: "text-2xl",
-      h2: "text-xl",
-      h3: "text-lg",
-      h4: "text-base",
+      h1: "markdown-h1 text-2xl",
+      h2: "markdown-h2 text-xl",
+      h3: "markdown-h3 text-lg",
+      h4: "markdown-h4 text-base",
       "h1, h2, h3, h4": "font-bold mt-4",
       "code:not(.hljs)": "py-[1px] px-[4px] rounded-md bg-slate-100 text-[14px] text-stale-600",
       "input[type=checkbox]": "inline-block checkbox checkbox-sm -mb-1",
       a: "link link-hover link-primary underline-offset-4",
       "ul, ol": "pl-5",
-      ul: "list-disc",
-      ol: "list-decimal",
-      img: "card",
-      table: "table",
+      ul: "markdown-ul list-disc",
+      ol: "markdown-ol list-decimal",
+      img: "markdown-img card",
+      table: "markdown-table table",
     })
     .use(rehypeWrap, { selector: "table", wrapper: "div.overflow-x-auto.w-full", fallback: false })
     .process(markdown);

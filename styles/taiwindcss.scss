@@ -40,4 +40,51 @@
       line-height: 1.5;
     }
   }
+
+  .layout-cv {
+    .page-content {
+      @apply gap-0;
+
+      b, strong {
+        @apply font-semibold;
+      }
+    }
+
+    .markdown-h1,
+    .markdown-h2,
+    .markdown-h3 {
+      @apply font-semibold mb-1;
+
+      em {
+        @apply text-sm font-semibold text-slate-600;
+      }
+    }
+
+    // main section
+    .markdown-h1 {
+      @apply mt-6 mb-1;
+    }
+
+    // sub-section
+    .markdown-h2 {
+      @apply mt-3 mb-0;
+    }
+
+    // content-section
+    .markdown-h3 {
+      @apply mt-1 mb-0;
+    }
+
+    .markdown-ul {
+      @apply text-sm;
+
+      li {
+        @apply pt-1;
+      }
+
+      .winning-content {
+        @apply text-slate-600;
+      }
+    }
+  }
 }
