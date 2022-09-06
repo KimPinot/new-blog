@@ -66,7 +66,7 @@ export const _unified = (markdown: string) =>
     })
     .use(remarkRehype)
     .use(rehypeStringify)
-    .use(rehypeHighlight, { subset: false })
+    .use(rehypeHighlight, { subset: false, ignoreMissing: true })
     .use(rehypeAddClasses, {
       h1: "markdown-h1 text-2xl",
       h2: "markdown-h2 text-xl",
