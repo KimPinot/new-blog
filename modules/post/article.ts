@@ -1,15 +1,10 @@
-import * as F from "fp-ts/function";
 import fs from "fs/promises";
 import path from "path";
-import { bundleMDX } from "mdx-bundler";
-import { joinObject, pick } from "modules/utils/object";
 import remarkGfm from "remark-gfm";
 import matter from "gray-matter";
 import remarkGithub from "remark-github";
 import remarkGemoji from "remark-gemoji";
 import remarkBreaks from "remark-breaks";
-import { nodeTypes } from "@mdx-js/mdx";
-import rehypeRaw from "rehype-raw";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
@@ -37,50 +32,23 @@ export type MetaDataWithFilename = Metadata & {
 const readFile = (dir: string) => (filename: string) => (extension: string) =>
   fs.readFile(path.join(path.resolve(dir), `${filename}.${extension}`), "utf-8");
 
-const openMdx = (filename: string) =>
-  readFile("./posts")(filename)("mdx").catch(() => readFile("./posts")(filename)("md"));
-
-type RenderReturns = {
-  code: string;
-  frontmatter: Metadata;
-  matter: {
-    content: string;
-  };
-};
-export const render = (markdown: string): Promise<RenderReturns> =>
-  bundleMDX({
-    source: markdown,
-    cwd: path.resolve(),
-    mdxOptions: (options) => ({
-      ...options,
-      remarkPlugins: [
-        remarkGfm,
-        [
-          remarkGithub,
-          {
-            repository: "KimPinot/new-blog",
-          },
-        ],
-        remarkGemoji,
-        remarkBreaks,
-      ],
-      rehypePlugins: [[rehypeRaw, { passThrough: nodeTypes }]],
-    }),
-  });
-
-const filenameToRender = async (filename: string) => F.pipe(await openMdx(filename), render);
-const matterContent = async (filename: string) => F.pipe(await openMdx(filename), matter, pick("content"), render);
-
-export async function getContent(filename: string): Promise<string> {
-  return F.pipe(await matterContent(filename), pick("code"));
+export async function getMetadata(filename: string) {
+  const file = await getFile(filename);
+  return {
+    filename,
+    ...matter(file).data,
+  } as MetaDataWithFilename;
 }
 
-export async function getMetadata(filename: string): Promise<MetaDataWithFilename> {
-  const { date, ...rest } = F.pipe(await filenameToRender(filename), pick("frontmatter"), joinObject({ filename }));
-  return {
-    ...rest,
-    date: +date,
-  };
+async function getFile(filename: string) {
+  let file: string;
+  try {
+    file = await readFile("./posts")(filename)("mdx");
+  } catch (e) {
+    // fall-back markdown
+    file = await readFile("./posts")(filename)("md");
+  }
+  return file;
 }
 
 export const _unified = (markdown: string) =>
@@ -118,12 +86,7 @@ export const _unified = (markdown: string) =>
     .process(markdown);
 
 export const readPost = async (filename: string) => {
-  let file: string;
-  try {
-    file = await readFile("./posts")(filename)("mdx");
-  } catch (e) {
-    file = await readFile("./posts")(filename)("md");
-  }
+  const file = await getFile(filename);
   const { content: _content, data: metadata } = matter(file);
   const __html = await _unified(_content);
   return {
