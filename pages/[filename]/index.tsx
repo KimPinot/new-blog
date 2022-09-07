@@ -21,7 +21,7 @@ const ArticleDetail: NextPage<Props> = ({ filename, metadata, __html }) => {
         layout={metadata.layout}
       >
         <div className="flex flex-col gap-2" dangerouslySetInnerHTML={{ __html }} />
-        <Comments />
+        {metadata.comment !== false && <Comments />}
       </ArticleLayout>
     </>
   );
