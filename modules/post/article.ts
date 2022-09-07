@@ -73,7 +73,7 @@ export const _unified = (markdown: string) =>
       h3: "markdown-h3 text-lg",
       h4: "markdown-h4 text-base",
       "h1, h2, h3, h4": "font-bold mt-4",
-      "code:not(.hljs)": "py-[1px] px-[4px] rounded-md bg-slate-100 text-[14px] text-stale-600",
+      "code:not(.hljs)": "py-[1px] px-[4px] rounded-md bg-slate-100 text-stale-600",
       "input[type=checkbox]": "inline-block checkbox checkbox-sm -mb-1",
       a: "link link-hover link-primary underline-offset-4",
       "ul, ol": "pl-5",
