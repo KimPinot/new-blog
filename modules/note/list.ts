@@ -28,10 +28,10 @@ export async function noteFiles(path: string): Promise<Note> {
 export async function noteStaticPaths(): Promise<GetStaticPathsResult["paths"]> {
   const files = await noteFiles("notes");
 
-  function generaatePaths(dirs: Note, path: string[] = []): string[][] {
+  function generatePaths(dirs: Note, path: string[] = []): string[][] {
     const keys = Object.keys(dirs);
     const rawDirs = keys.map((key) =>
-      typeof dirs[key] === "string" ? [...path, key] : generaatePaths(dirs[key] as Note, [...path, key] as string[]),
+      typeof dirs[key] === "string" ? [...path, key] : generatePaths(dirs[key] as Note, [...path, key] as string[]),
     );
     return rawDirs.reduce(
       (acc, cur) => (Array.isArray(cur[0]) ? [...acc, ...cur] : [...acc, cur]) as string[][],
@@ -39,7 +39,7 @@ export async function noteStaticPaths(): Promise<GetStaticPathsResult["paths"]> 
     ) as string[][];
   }
 
-  return generaatePaths(files).map((f) => ({
+  return generatePaths(files).map((f) => ({
     params: {
       slug: f,
     },
