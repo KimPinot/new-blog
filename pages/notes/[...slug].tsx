@@ -1,6 +1,6 @@
 import { noteFiles, noteStaticPaths } from "modules/note/list";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { note } from "modules/note/item";
+import { noteContent } from "modules/note/item";
 import { deleteMdFileExtension } from "modules/utils/file";
 import { NoteLayout } from "components/layout/NoteLayout";
 import { Note } from "modules/note/type";
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       notes: await noteFiles("notes"),
       metadata: await noteMeta(paths, filename),
-      __html: (await _unified(await note(paths, filename)!)).value,
+      __html: (await _unified(await noteContent(paths, filename)!)).value,
     },
   };
 };
