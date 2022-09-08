@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       notes: await noteFiles("notes"),
-      metadata: await noteMeta(paths, filename),
+      metadata: await noteMeta(`notes/${paths}`, filename),
       __html: (await _unified(await noteContent(paths, filename)!)).value,
     },
   };
