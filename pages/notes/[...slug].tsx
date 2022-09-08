@@ -1,60 +1,24 @@
 import { noteFiles, noteStaticPaths } from "modules/note/list";
-import { FaCaretRight } from "react-icons/fa";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import Link from "next/link";
 import { note } from "modules/note/item";
 import { deleteMdFileExtension } from "modules/utils/file";
+import { NoteLayout } from "components/layout/NoteLayout";
+import { Note } from "modules/note/type";
+import { Comments } from "components/commnets";
+import { noteMeta } from "modules/note/meta";
+import { _unified } from "modules/post/article";
 
 type Props = {
   notes: Note;
-  note: string;
+  __html: string;
+  metadata: Record<string, never>;
 };
 
-type Note = {
-  [key: string]: "file" | Note;
-};
-
-type ListsProps = {
-  notes: Note;
-  path?: string;
-};
-
-function Lists({ notes, path = "" }: ListsProps) {
-  const _notes = Object.keys(notes);
+const Notes: NextPage<Props> = ({ notes, __html, metadata }) => {
   return (
-    <div className="flex flex-col gap-1">
-      {_notes.map((note) =>
-        typeof notes[note] === "object" ? (
-          <div key={note}>
-            <details>
-              <summary className="btn btn-ghost w-full justify-start normal-case">
-                <FaCaretRight /> {note}
-              </summary>
-              <div className="pl-4 py-1">
-                <Lists notes={notes[note] as Note} path={`${path}/${note}`} />
-              </div>
-            </details>
-          </div>
-        ) : (
-          <div key={note}>
-            <Link href={`/notes${path}/${note}`}>
-              <a className="btn btn-ghost w-full justify-start normal-case">{notes[note]}</a>
-            </Link>
-          </div>
-        ),
-      )}
-    </div>
-  );
-}
-
-const Notes: NextPage<Props> = ({ notes, note }) => {
-  return (
-    <div className="page-content mx-auto flex py-0">
-      <nav className="min-w-[250px] min-h-[calc(100vh-80px)] border-r-2 h-full overflow-y-auto py-8 px-2">
-        <Lists notes={notes} />
-      </nav>
-      <article className="p-8 flex flex-col gap-2">{JSON.stringify(note)}</article>
-    </div>
+    <NoteLayout notes={notes} title={metadata.title} description={metadata.description} date={metadata.date}>
+      <div className="flex flex-col gap-2" dangerouslySetInnerHTML={{ __html }} />
+    </NoteLayout>
   );
 };
 
@@ -68,12 +32,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = (params!.slug as string[]) || [];
   const paths = slug.slice(0, -1).join("/");
-  const filename = deleteMdFileExtension(slug.slice(-1)[0]);
+  const filename = deleteMdFileExtension(slug.slice(-1)[0] || "index.md");
 
   return {
     props: {
       notes: await noteFiles("notes"),
-      note: await note(paths, filename),
+      metadata: await noteMeta(paths, filename),
+      __html: (await _unified(await note(paths, filename)!)).value,
     },
   };
 };

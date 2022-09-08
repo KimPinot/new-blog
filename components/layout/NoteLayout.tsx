@@ -12,7 +12,7 @@ export function NoteLayout({ notes, ...props }: NoteLayoutProps) {
       <nav className="min-w-[250px] min-h-[calc(100vh-80px)] border-r-2 h-full overflow-y-auto py-8 px-2">
         <Lists notes={notes} />
       </nav>
-      <ArticleLayout {...props} layout="note" />
+      <ArticleLayout className="w-full" {...props} layout="note" />
     </main>
   );
 }
