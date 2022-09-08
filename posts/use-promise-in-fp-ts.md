@@ -8,7 +8,6 @@ tags:
   - promise
 categories:
   - how-to
-list: false
 ---
 
 안녕하세요. 나비입니다.
