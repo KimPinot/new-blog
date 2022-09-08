@@ -1,5 +1,5 @@
 ---
-title: fp-ts에서 Promise를 사용하는 방법 (1) - Task / TaskEither
+title: fp-ts에서 Promise를 사용하는 방법
 description: 함수형 라이브러리인 fp-ts 에서 Task / TaskEither 모나드를 사용하여 비동기를 처리하는 방법을 알아봅시다.
 date: 2022-09-07 22:14:00
 tags:
@@ -41,7 +41,7 @@ interface Task<A> {
 ```typescript
 const asyncHello = () => Promise.resolve("Hello");
 
-const doesFunctionCanRun = () => {
+const doesFunctionCanRun = async () => {
   try {
     await asyncFunction();
     return true;
@@ -61,7 +61,7 @@ import * as T from "fp-ts/lib/Task";
 const taskHello: T.Task<string> = () => Promise.resolve("Hello");
 ```
 
-물론 `await` 을 앞에 추가함으로써 비동기로도 언제나 사용이 가능하다는 것도 장점입니다.
+물론 `await` 을 앞에 추가함으로써 다른 Promise 함수처럼 사용할 수 있습니다.
 
 ```typescript
 const someAsyncFunction = async () => {
@@ -203,32 +203,11 @@ const process = TE.tryCatch(
 }
 ```
 
-## `TaskEither` 를 다시 `Task` 로 바꾸기 (`TE.fold`)
-
-Json이 반환되는것도 좋지만, `_tag` 와 같이 지금 당장 사용하지 않는 값이 들어오는것이 조금 불편합니다.
-
-이때 `TE.fold` 라는 함수를 이용하여 Either 값을 일반 값으로 변환해줄 수 있습니다.
-
-```typescript
-import * as T from "fp-ts/lib/Task";
-import * as F from "fp-ts/function";
-import * as TE from "fp-ts/TaskEither";
-
-const process = F.pipe(
-  TE.tryCatch(
-    () => throws50percent(),
-    () => F.constVoid() as never,
-  ),
-  // 반드시 두개의 리턴 타입이 동일해야 합니다
-  TE.fold(() => T.of("errored"), T.of),
-);
-```
-
 ## 2개 이상의 비동기 다루기 (`TE.chain`)
 
 위에서 더 나아가서 이번에는 두개 이상의 비동기를 다뤄보도록 하겠습니다.
 
-함수형을 사용하지 않을때는 다음과 같이 코드를 사용하는데요.
+함수형을 사용하지 않을때는 보통 다음과 같은 코드를 사용하게 되는데요.
 
 ```typescript
 const process = async () => {
@@ -246,7 +225,11 @@ const process = async () => {
 }
 ```
 
-`TE.chain` 함수와 `F.pipe` 함수를 엮으면 이렇게 사용할 수 있습니다.
+이때 함수형에서는 `TE.chain` 함수를 사용하게 됩니다.
+
+이 함수는 앞의 `TaskEither` 의 값이 `Left`가 아닐 경우 실행되는 함수인데요.
+
+`TE.chain` 과 파이프 함수(`F.pipe`) 를 사용하면 쉽게 두개 이상의 비동기 처리를 할 수 있게 됩니다.
 
 ```typescript
 import * as T from "fp-ts/lib/Task";
@@ -264,9 +247,23 @@ const process = F.pipe(
       (err) => new Error(`Second ${err}`),
     ),
   ),
-  // foldW의 경우 반드시 2개의 타입이 동일할 필요가 없습니다.
   TE.foldW(T.of, T.of),
 );
+```
+
+여기서 `TE.foldW` 라는 함수를 만나게 되는데요.
+
+이 함수는 Either 타입의 Json을 value로 바꿔주는 기능을 하는 함수입니다.
+
+결과적으로 이 함수를 실행시키면 이런 Json 대신
+
+```json
+{ _tag: 'Right', right: ':)' }
+```
+
+이런 값이 출력되게 됩니다.
+```text
+:)
 ```
 
 ## 오류 발생시 핸들링 하기 (`TE.orElse`)
@@ -320,7 +317,15 @@ const process = F.pipe(
   TE.foldW(T.of, T.of),
 ```
 
+<<<<<<< Updated upstream
+다음 글에서는 위에서 배운 지식들을 활용해서 **fp-ts 비동기를 실전에서 사용하는 방법**을 알아보도록 하겠습니다!
+=======
+<<<<<<< Updated upstream
 다음 글에서는 위에서 배운 지식들을 활용해서 **fp-ts로 파일을 가져오는 방법**을 알아보도록 하겠습니다!
+=======
+다음 글에서는 위에서 배운 지식들을 활용해서 **fp-ts 비동기를 실전에서 사용하는 방법ㅇ**을 알아보도록 하겠습니다!
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 잘못된 내용의 지적은 언제나 환영합니다!
 
