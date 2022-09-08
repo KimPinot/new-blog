@@ -16,11 +16,13 @@ type Note = {
 export async function noteFiles(path: string): Promise<Note> {
   const dir = await readDir(path);
   const format = async (d: Dirent) =>
-    d.isDirectory() ? { [d.name]: await noteFiles(`${path}/${d.name}`) } : { [trim(d.name)]: (await noteMeta(path, d.name)).title };
+    d.isDirectory()
+      ? { [d.name]: await noteFiles(`${path}/${d.name}`) }
+      : { [trim(d.name)]: (await noteMeta(path, d.name)).title };
   return F.pipe(
-        await Promise.all(F.pipe(dir, A.map(format))),
-        A.reduce({}, (acc, cur) => ({ ...acc, ...cur })),
-      );
+    await Promise.all(F.pipe(dir, A.map(format))),
+    A.reduce({}, (acc, cur) => ({ ...acc, ...cur })),
+  );
 }
 
 export async function noteStaticPaths(): Promise<GetStaticPathsResult["paths"]> {
