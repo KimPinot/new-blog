@@ -38,7 +38,7 @@ function Lists({ notes, path = "" }: ListsProps) {
         ) : (
           <div key={note}>
             <Link href={`/notes${path}/${note}`}>
-              <a className="btn btn-ghost w-full justify-start normal-case">{note}</a>
+              <a className="btn btn-ghost w-full justify-start normal-case">{notes[note]}</a>
             </Link>
           </div>
         ),
