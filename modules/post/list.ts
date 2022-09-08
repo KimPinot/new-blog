@@ -9,8 +9,7 @@ import { getMetadata, Metadata } from "./article";
 import { promiseAll } from "modules/utils/promise";
 import { pick } from "modules/utils/object";
 import { Dirent } from "fs";
-
-const deleteMdFileExtension = (filename: string) => F.pipe(filename, S.replace(/.md(x)?/g, ""));
+import { deleteMdFileExtension } from "modules/utils/file";
 
 const staticPathObj = (filename: string) => ({
   params: {
