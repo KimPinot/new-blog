@@ -1,5 +1,3 @@
-import fs from "fs/promises";
-import path from "path";
 import remarkGfm from "remark-gfm";
 import matter from "gray-matter";
 import remarkGithub from "remark-github";
@@ -14,6 +12,7 @@ import rehypeHighlight from "rehype-highlight";
 import remarkMdx from "remark-mdx";
 // @ts-ignore
 import rehypeAddClasses from "rehype-add-classes";
+import { readFile } from "modules/utils/file";
 const rehypeWrap = require("rehype-wrap");
 
 export type Metadata = {
@@ -29,8 +28,6 @@ export type MetaDataWithFilename = Metadata & {
   filename: string;
 };
 
-const readFile = (dir: string) => (filename: string) => (extension: string) =>
-  fs.readFile(path.join(path.resolve(dir), `${filename}.${extension}`), "utf-8");
 
 export async function getMetadata(filename: string) {
   const file = await getFile(filename);
