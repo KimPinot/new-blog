@@ -317,13 +317,7 @@ const process = F.pipe(
   TE.foldW(T.of, T.of),
 ```
 
-<<<<<<< Updated upstream
 다음 글에서는 위에서 배운 지식들을 활용해서 **fp-ts 비동기를 실전에서 사용하는 방법**을 알아보도록 하겠습니다!
-=======
-<<<<<<< Updated upstream
-다음 글에서는 위에서 배운 지식들을 활용해서 **fp-ts로 파일을 가져오는 방법**을 알아보도록 하겠습니다!
-=======
-다음 글에서는 위에서 배운 지식들을 활용해서 **fp-ts 비동기를 실전에서 사용하는 방법ㅇ**을 알아보도록 하겠습니다!
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
 
