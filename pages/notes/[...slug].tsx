@@ -16,7 +16,7 @@ type Props = {
 
 const Notes: NextPage<Props> = ({ notes, __html, metadata }) => {
   return (
-    <NoteLayout notes={notes} title={metadata.title} description={metadata.description} date={metadata.date}>
+    <NoteLayout notes={notes} metadata={metadata as any}>
       <div className="flex flex-col gap-2" dangerouslySetInnerHTML={{ __html }} />
     </NoteLayout>
   );
