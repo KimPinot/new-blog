@@ -5,7 +5,7 @@ import Head from "next/head";
 import { HTMLProps, ReactNode } from "react";
 import { BiTime } from "react-icons/bi";
 
-interface Props extends HTMLProps<HTMLDivElement> {
+export interface ArticleLayoutProps extends HTMLProps<HTMLDivElement> {
   title: string;
   description: string;
   thumbnail?: string;
@@ -14,7 +14,7 @@ interface Props extends HTMLProps<HTMLDivElement> {
   children: ReactNode;
 }
 
-export function ArticleLayout({ title, description, thumbnail, date, children, layout, ...props }: Props) {
+export function ArticleLayout({ title, description, thumbnail, date, children, layout, ...props }: ArticleLayoutProps) {
   return (
     <main {...props}>
       <Head>

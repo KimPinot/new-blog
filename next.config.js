@@ -29,10 +29,15 @@ const nextConfig = {
   env: {
     production,
   },
-  assetPrefix: "./",
   experimental: {
     swcPlugins: [["next-superjson-plugin", { excluded: [] }]],
   },
+  rewrites: async () => [
+    {
+      source: "/notes",
+      destination: "/notes/index",
+    },
+  ],
 };
 
 module.exports = nextConfig;

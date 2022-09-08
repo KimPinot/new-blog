@@ -26,6 +26,11 @@ export function Header() {
               <span className="text-md hover:text-primary transition-[color]">Category</span>
             </a>
           </Link>
+          <Link href="/notes">
+            <a className="btn btn-ghost btn-xs">
+              <span className="text-md hover:text-primary transition-[color]">Notes</span>
+            </a>
+          </Link>
           <Link href="/cv">
             <a className="btn btn-ghost btn-xs">
               <span className="text-md hover:text-primary transition-[color]">CV</span>
