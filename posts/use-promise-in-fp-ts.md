@@ -228,6 +228,26 @@ const process = F.pipe(
 
 위에서 더 나아가서 이번에는 두개 이상의 비동기를 다뤄보도록 하겠습니다.
 
+함수형을 사용하지 않을때는 다음과 같이 코드를 사용하는데요.
+
+```typescript
+const process = async () => {
+  try {
+    await throws50percent();
+  } catch (e) {
+    throw new Error(`First ${err}`);
+  }
+
+  try {
+    await second();
+  } catch (e) {
+    throw new Error(`Second ${err}`);
+  }
+}
+```
+
+`TE.chain` 함수와 `F.pipe` 함수를 엮으면 이렇게 사용할 수 있습니다.
+
 ```typescript
 import * as T from "fp-ts/lib/Task";
 import * as F from "fp-ts/function";
@@ -244,11 +264,39 @@ const process = F.pipe(
       (err) => new Error(`Second ${err}`),
     ),
   ),
+  // foldW의 경우 반드시 2개의 타입이 동일할 필요가 없습니다.
   TE.foldW(T.of, T.of),
 );
 ```
 
 ## 오류 발생시 핸들링 하기 (`TE.orElse`)
+
+하지만, 만약 오류가 발생한 경우 rollback과 같이 특정 동작을 수행해야 하는 경우에는 어떻게 코드를 작성할 수 있을까요?
+
+```typescript
+const rollback = throws50percent;
+
+const process = async () => {
+  try {
+    await throws50percent();
+  } catch (originalError) {
+    // rollback thing
+    try {
+      await rollback();
+    } catch (e) {
+      throw new Error(`Rollback Error : ${e}`)
+    }
+    // then, throw exist error
+    throw originalError;
+  }
+}
+```
+
+이럴때 사용할 수 있는 함수가 바로 `TE.orElse` 입니다.
+
+`TE.orElse` 는 `Left` 가 한번 이상 인자로 주어질 경우 실행되는 함수입니다.
+
+위 코드를 다시 함수형으로 바꾼다면 이렇게 바꿀 수 있습니다.
 
 ```typescript
 import * as T from "fp-ts/lib/Task";
@@ -259,12 +307,6 @@ const process = F.pipe(
   TE.tryCatch(
     () => throws50percent(),
     (err) => new Error(`first ${err}`),
-  ),
-  TE.chain(() =>
-    TE.tryCatch(
-      () => throws50percent(),
-      (err) => new Error(`second ${err}`),
-    ),
   ),
   TE.orElse((origErr) =>
     F.pipe(
@@ -277,3 +319,9 @@ const process = F.pipe(
   ),
   TE.foldW(T.of, T.of),
 ```
+
+다음 글에서는 위에서 배운 지식들을 활용해서 **fp-ts로 파일을 가져오는 방법**을 알아보도록 하겠습니다!
+
+잘못된 내용의 지적은 언제나 환영합니다!
+
+읽어주셔서 감사합니다 🙇‍♀️
