@@ -29,7 +29,6 @@ const nextConfig = {
   env: {
     production,
   },
-  assetPrefix: "./",
   experimental: {
     swcPlugins: [["next-superjson-plugin", { excluded: [] }]],
   },
