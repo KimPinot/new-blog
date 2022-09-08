@@ -69,7 +69,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = (params!.slug as string[]) || [];
   const paths = slug.slice(0, -1).join("/");
   const filename = deleteMdFileExtension(slug.slice(-1)[0]);
-  console.log(slug, paths, filename)
 
   return {
     props: {
