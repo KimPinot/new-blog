@@ -1,6 +1,7 @@
 ---
 title: Hello Notes!
 date: 2022-9-9 01:12:27
+comment: false
 ---
 
 글로 쓰기에 애매하지만, 기록은 하고 싶은 글들을 모아둔 곳입니다.
