@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Note } from "modules/note/type";
-import { FaCaretRight } from "react-icons/fa";
 
 type ListsProps = {
   notes: Note;
@@ -15,8 +14,8 @@ export function Lists({ notes, path = "" }: ListsProps) {
         typeof notes[note] === "object" ? (
           <div key={note}>
             <details>
-              <summary className="btn btn-ghost w-full justify-start normal-case">
-                <FaCaretRight /> {note}
+              <summary className="btn btn-ghost list-item leading-[3rem] text-left normal-case">
+                <span className="inline-block ml-2">{note}</span>
               </summary>
               <div className="pl-4 py-1">
                 <Lists notes={notes[note] as Note} path={`${path}/${note}`} />
