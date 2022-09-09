@@ -18,6 +18,7 @@ const Notes: NextPage<Props> = ({ notes, __html, metadata }) => {
   return (
     <NoteLayout notes={notes} metadata={metadata as any}>
       <div className="flex flex-col gap-2" dangerouslySetInnerHTML={{ __html }} />
+      {metadata.comment !== false && <Comments />}
     </NoteLayout>
   );
 };
