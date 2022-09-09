@@ -1,7 +1,10 @@
 import * as A from "fp-ts/Array";
 import * as F from "fp-ts/function";
+import * as O from "fp-ts/Ord";
+import * as N from "fp-ts/number";
 import { Dirent } from "fs";
 import { readdir } from "fs/promises";
+import { isNotJunk } from "junk";
 import { deleteMdFileExtension as trim } from "modules/utils/file";
 import { GetStaticPathsResult } from "next";
 import { resolve } from "path";
@@ -13,8 +16,16 @@ type Note = {
   [key: string]: string | Note;
 };
 
+const filterJunk = (d: Dirent) => isNotJunk(d.name);
+const sortFolder = F.pipe(
+  N.Ord,
+  O.contramap((d: Dirent) => -d.isDirectory()),
+);
+
 export async function noteFiles(path: string): Promise<Note> {
-  const dir = await readDir(path);
+  const _dir = await readDir(path);
+  const dir = F.pipe(_dir, A.filter(filterJunk), A.sort(sortFolder));
+
   const format = async (d: Dirent) =>
     d.isDirectory()
       ? { [d.name]: await noteFiles(`${path}/${d.name}`) }
