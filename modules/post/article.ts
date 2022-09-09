@@ -60,6 +60,7 @@ export const _unified = (markdown: string) =>
     .use(remarkBreaks)
     .use(remarkMermaid, {
       launchOptions: {},
+      svgo: null,
     })
     .use(remarkRehype)
     .use(rehypeStringify)
