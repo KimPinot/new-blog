@@ -20,8 +20,8 @@ export function ArticleLayout({ title, description, thumbnail, date, children, l
       <Head>
         <title>{`nabi.kim | ${title}`}</title>
         <meta property="og:title" content={`nabi.kim | ${title}`} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={thumbnail ?? "/assets/opengraph.png"} />
+        <meta property="og:description" content={description ?? "평범한 기술 블로그"} />
+        <meta property="og:image" content={thumbnail ?? "https://nabi.kim/assets/opengraph.png"} />
       </Head>
       <header>
         <div className="page-content">
