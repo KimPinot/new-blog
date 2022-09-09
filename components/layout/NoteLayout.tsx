@@ -21,7 +21,7 @@ export function NoteLayout({ notes, metadata, children }: NoteLayoutProps) {
         <meta property="og:description" content={metadata.description ?? "평범한 기술 블로그"} />
         <meta property="og:image" content={metadata.thumbnail ?? "https://nabi.kim/assets/opengraph.png"} />
       </Head>
-      <nav className="hidden md:block min-w-[250px] h-[calc(100vh-80px)] border-r-2 overflow-y-auto py-8 px-2">
+      <nav className="hidden md:block w-[250px] h-[calc(100vh-80px)] border-r-2 overflow-y-auto py-8 px-2">
         <Lists notes={notes} />
       </nav>
       <div className="h-[calc(100vh-80px)] overflow-y-auto">
