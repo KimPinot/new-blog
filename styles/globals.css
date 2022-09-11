@@ -51,8 +51,3 @@ h3 .emoji {
 .hljs {
   padding: 1rem !important;
 }
-
-span.nodeLabel {
-  position: relative;
-  top: -2px;
-}
