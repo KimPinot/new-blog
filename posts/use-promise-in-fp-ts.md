@@ -317,8 +317,6 @@ const process = F.pipe(
 ```
 
 다음 글에서는 위에서 배운 지식들을 활용해서 **fp-ts 비동기를 실전에서 사용하는 방법**을 알아보도록 하겠습니다!
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 잘못된 내용의 지적은 언제나 환영합니다!
 
