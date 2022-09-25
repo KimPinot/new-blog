@@ -24,7 +24,7 @@ export function NoteLayout({ notes, metadata, children }: NoteLayoutProps) {
       <nav className="hidden md:block w-[250px] border-r-2 overflow-y-auto py-8 px-2">
         <Lists notes={notes} />
       </nav>
-      <div className="overflow-y-auto">
+      <div className="overflow-y-auto w-full">
         <header>
           <div className="page-content">
             <h1 className="text-2xl font-bold">{metadata.title}</h1>
