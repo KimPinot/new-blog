@@ -17,6 +17,7 @@ export function NoteLayout({ notes, metadata, children }: NoteLayoutProps) {
     <main className="max-w-5xl mx-auto flex py-0 h-[calc(100vh-80px)]">
       <Head>
         <title>{`nabi.kim | ${metadata.title}`}</title>
+        <meta name="description" content={metadata.description ?? "평범한 기술 블로그"} />
         <meta property="og:title" content={`nabi.kim | ${metadata.title}`} />
         <meta property="og:description" content={metadata.description ?? "평범한 기술 블로그"} />
         <meta property="og:image" content={metadata.thumbnail ?? "https://nabi.kim/assets/opengraph.png"} />

@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>nabi.kim</title>
+        <meta name="description" content="평범한 기술 블로그" />
         <meta name="og:type" content="blog" />
         <meta name="og:locale" content="ko_KR" />
         <meta property="og:url" content="https://nabi.kim" />
