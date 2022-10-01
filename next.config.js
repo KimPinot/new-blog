@@ -38,10 +38,6 @@ const nextConfig = {
       destination: "/notes/index",
     },
   ],
-  i18n: {
-    locales: ["ko"],
-    defaultLocale: "ko",
-  },
 };
 
 module.exports = nextConfig;
