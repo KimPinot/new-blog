@@ -6,7 +6,7 @@ export function Header() {
     <header>
       <div className="page-content pb-0 flex items-center justify-between">
         <Link href="/">
-          <a className="avatar w-16 h-16 btn btn-square btn-xs btn-ghost">
+          <a className="avatar w-16 h-16 btn btn-square btn-xs btn-ghost" aria-label="메인화면으로">
             <Image src="/assets/avatar.png" alt="" layout="fill" />
           </a>
         </Link>

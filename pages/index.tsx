@@ -18,7 +18,7 @@ const Home: NextPage<Props> = ({ articles }) => {
             <a className="flex-1 text-2xl hover:text-primary transition-colors font-bold">{item.title}</a>
           </Link>
           <p className="text-base text-slate-700">{item.description}</p>
-          <span className="font-[inherit] text-base text-slate-400">
+          <span className="font-[inherit] text-base text-slate-500">
             {format(dateWithoutTimezone(item.date), "yyyy-MM-dd")}
           </span>
         </div>
