@@ -2,14 +2,13 @@ import "styles/globals.css";
 import "styles/taiwindcss.scss";
 import "highlight.js/scss/atom-one-light.scss";
 import type { AppProps } from "next/app";
-import AlertContextProvider from "contexts/AlertContext";
 import { Header } from "components/Header";
 import Head from "next/head";
 import Script from "next/script";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AlertContextProvider>
+    <>
       <Head>
         <title>nabi.kim</title>
         <meta name="og:type" content="blog" />
@@ -40,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           gtag('config', 'G-FSPPFRL14L');
         `}
       </Script>
-    </AlertContextProvider>
+    </>
   );
 }
 
